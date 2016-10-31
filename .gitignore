@@ -169,3 +169,8 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml 
 # *.ipr
+
+
+#Custom
+algoBook/static
+algoBook/staticfiles

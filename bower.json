@@ -1,0 +1,25 @@
+{
+  "name": "algoBook",
+  "homepage": "https://github.com/poush/algoBook",
+  "authors": [
+    "Piyush Agrawal <poush12@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "keywords": [
+    "algo",
+    "book"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
