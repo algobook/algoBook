@@ -20,6 +20,8 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE mydb;" -U postgres
+  - npm install -g bower
+  - bower install
 
 script:
   - python manage.py migrate --noinput
