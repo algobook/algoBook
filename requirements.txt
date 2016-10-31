@@ -1,1 +1,6 @@
+dj-database-url==0.4.1
 Django==1.10.2
+django-environ==0.4.0
+gunicorn==19.6.0
+six==1.10.0
+whitenoise==3.2.2
