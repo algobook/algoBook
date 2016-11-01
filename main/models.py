@@ -6,3 +6,4 @@ class Algo(models.Model):
     created_at = models.DateTimeField('created_at')
     updated_at = models.DateTimeField('updated_at')
     code = models.CharField(max_length=10000)
+    slug = models.CharField(max_length=256)
