@@ -1,3 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|VT323');
 body{
-	background: #f7f7f7;
+	background: #191919;
+}
+
+h1.title{
+	margin-top: 200px;
+	font-family: 'Source Code Pro', monospace;
+	color: #fff;
+	font-size: 80px;
+}
+.searchbox{
+	border: 2px solid #fff;
+	border-radius: 40px;
+	background: transparent;
+	padding: 10px 30px;
+	height: 60px;
+	width: 80%;
+	margin: 30px auto;
+	color: #fff;
+	font-size:20px;
+}
+
+.searchbox:focus, .searchbox:active{
+	outline:none;
+	box-shadow: none;
+	border-color: #34BDAA;
 }
