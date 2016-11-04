@@ -9,6 +9,8 @@ h1.title{
 	color: #fff;
 	font-size: 80px;
 }
+
+
 .searchbox{
 	border: 2px solid #fff;
 	border-radius: 40px;
@@ -27,4 +29,18 @@ h1.title{
 	outline:none;
 	box-shadow: none;
 	border-color: #34BDAA;
+}
+
+
+
+@media(max-width:748px) {
+	h1.title{
+		font-size: 6rem;
+	}
+	.searchbox{
+		width: 95%;
+		border-radius: 4px;
+		border: 1px solid #fff;
+		height: 50px;
+	}
 }
