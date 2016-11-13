@@ -17,16 +17,9 @@
 	</div>
 	<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'screenfull/dist/screenfull.min.js' %}"></script>
+	<!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+	<script src="{% static 'main/scripts/app.js' %}"></script>
 
-	<script>
-	$(function(){
-		$(document).click(function(){
-			if(screenfull.enabled)
-			screenfull.request($('body')[0]);
-		})
-	})
-	</script>
 
 </body>
 </html>

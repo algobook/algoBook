@@ -20,7 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "screenfull": "^3.0.2"
+    "bootstrap": "^3.3.7"
   }
 }

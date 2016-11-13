@@ -5,10 +5,6 @@ body{
 
 .content {
 	width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
 }
 
 h1.title{
@@ -20,12 +16,12 @@ h1.title{
 
 
 .searchbox{
-	border: 2px solid #fff;
-	border-radius: 40px;
+	border: 1.3px solid #fff;
+	border-radius: 30px;
 	background: transparent;
 	padding: 10px 30px;
 	height: 60px;
-	width: 80%;
+	width: 60%;
 	margin: 30px auto;
 	color: #fff;
 	font-size:20px;
@@ -51,5 +47,14 @@ h1.title{
 		border-radius: 4px;
 		border: 1px solid #fff;
 		height: 50px;
+	}
+}
+
+@media (min-width: 748px) {
+	.content{
+		position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translateX(-50%) translateY(-60%);
 	}
 }
