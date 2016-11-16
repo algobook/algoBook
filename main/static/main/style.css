@@ -17,6 +17,7 @@ h2.title{
 	font-size: 35px;
 	color:#fff;	
 	font-family: 'Source Code Pro', monospace;
+	line-height: 15px;
 }
 
 .searchbox{
@@ -44,15 +45,16 @@ h2.title{
 	width: 400px;
 	border: 1px solid #606060;
 	border-radius: 30px;
-	margin-top:20px;
-	margin-left:10px;
+	margin-top:10px;
+	margin-left:-15px;
+	margin-bottom:10px;
 	font-size: 14px;
 	text-align: left;
 }
 
 
 header{
-	padding: 10px 0 0 0;
+	padding: 5px 0 0 0;
 	border-bottom: 1px solid #494949;
 }
 
@@ -73,7 +75,7 @@ header{
 .resultbox .meta {
 	margin-top: 5px;
 	color: #777777;
-	padding: 0 10px;
+
 }
 
 .stitle{
