@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	{% load static %}
+	<link rel="manifest" href="{% static 'main/manifest.json' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'main/style.css' %}">
+	<title>algoBook : The Curated Book of Algorithms</title>
+</head>
+<body>
+	<header class="">
+		<div class="container">
+			<div class="col-sm-2"><h2 class="title"> algoBook </h2></div>
+			<div class="col-sm-6">
+				<input type="text" class="form-control searchbox searchbox-small">
+			</div>
+		</div>
+	</header>
+
+	<div class="container">
+		<div class="col-sm-10">
+			<section id="results">
+				<div class="resultbox">
+					<a class="stitle">Binary Search </a>
+					<p class="meta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci voluptas eligendi maiores ipsa itaque magnam non delectus, quod neque, ratione modi temporibus ullam accusamus architecto. Labore adipisci excepturi voluptates, accusantium.</p>
+					<p class="meta"> contributors: abc, xyz</p>
+				</div>
+				<div class="resultbox">
+					<a class="stitle">Linear Search </a>
+					<p class="meta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci voluptas eligendi maiores ipsa itaque magnam non delectus, quod neque, ratione modi temporibus ullam accusamus architecto. Labore adipisci excepturi voluptates, accusantium.</p>
+					<p class="meta"> contributors: abc, xyz</p>
+				</div>
+				<div class="resultbox">
+					<a class="stitle">Heap Sort </a>
+					<p class="meta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci voluptas eligendi maiores ipsa itaque magnam non delectus, quod neque, ratione modi temporibus ullam accusamus architecto. Labore adipisci excepturi voluptates, accusantium.</p>
+					<p class="meta"> contributors: abc, xyz</p>
+				</div>
+			</section>
+		</div>
+		<div class="col-sm-2">
+			<h2 class="stitle text-center">
+				Filtered By
+			</h2>
+			<div class="label label-primary center-block"> Python</div>
+		</div>
+	</div>
+
+	<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'vue/dist/vue.min.js' %}"></script>
+	<script src="{% static 'main/scripts/app.js' %}"></script>
+
+
+</body>
+</html>

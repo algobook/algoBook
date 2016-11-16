@@ -8,12 +8,16 @@ body{
 }
 
 h1.title{
-
 	font-family: 'Source Code Pro', monospace;
 	color: #fff;
 	font-size: 80px;
 }
 
+h2.title{
+	font-size: 35px;
+	color:#fff;	
+	font-family: 'Source Code Pro', monospace;
+}
 
 .searchbox{
 	border: 1.3px solid #fff;
@@ -35,7 +39,54 @@ h1.title{
 	border-color: #34BDAA;
 }
 
+.searchbox-small{
+	height: 40px;
+	width: 400px;
+	border: 1px solid #606060;
+	border-radius: 30px;
+	margin-top:20px;
+	margin-left:10px;
+	font-size: 14px;
+	text-align: left;
+}
 
+
+header{
+	padding: 10px 0 0 0;
+	border-bottom: 1px solid #494949;
+}
+
+/** Search Results CSS */
+
+#results{
+	margin: 20px auto;
+}
+
+.resultbox{
+	border: 0.8px solid #020101;
+	border-radius:4px;
+	padding: 15px 20px;
+	background: #252525;
+	margin-bottom: 20px;
+}
+
+.resultbox .meta {
+	margin-top: 5px;
+	color: #777777;
+	padding: 0 10px;
+}
+
+.stitle{
+	color: #fff;
+	font-size: 25px;
+	cursor: pointer;
+}
+
+.stitle:hover, .stitle:focus {
+	color: #fff;
+}
+
+/** End */
 
 @media(max-width:748px) {
 	h1.title{
@@ -58,3 +109,5 @@ h1.title{
 	    transform: translateX(-50%) translateY(-60%);
 	}
 }
+
+
