@@ -88,6 +88,45 @@ header{
 	color: #fff;
 }
 
+/**	loading effect box */
+
+.stitle-bar{
+	width: 200px;
+	height: 25px;
+	// background: #fff;
+	margin-bottom: 10px;
+	opacity: 0.3;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.meta-bar{
+	width: 80%;
+	height: 15px;
+	margin-bottom: 10px;
+	background: #777777;
+	opacity: 0.2;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -800px 0
+    }
+    100%{
+        background-position: 800px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #252525 20%, #2d2d2d 58%, #252525 78%);
+    background-size: 800px 104px;
+    position: relative;
+}
 /** End */
 
 @media(max-width:748px) {
