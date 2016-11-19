@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^search$',views.search, name='index'),
-    url(r'^algo/(?P<algo_slug>[\w-]+)/$', views.show, name="show_algo")
+    # url(r'^search$',views.search, name='index'),
+    url(r'^(?P<query>[\w+-]+)/$', views.search, name="search_algo")
 ]

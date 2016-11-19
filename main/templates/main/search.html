@@ -13,7 +13,9 @@
 		<div class="container-fluid">
 			<div class="col-sm-2"><h2 class="title"> algoBook </h2></div>
 			<div class="col-sm-6">
-				<input type="text" class="form-control searchbox searchbox-small">
+				<form id="form" action="./search" class="form" method="get">
+					<input type="text" class="form-control searchbox searchbox-small" value="{{ query }}">
+				</form>
 			</div>
 		</div>
 	</header>
@@ -21,18 +23,23 @@
 	<div class="container">
 		<div class="col-sm-10 col-lg-10">
 			<section id="results">
+				{% if not algos %}
 				<div class="resultbox resultbar animated-background">
 					<div class="stitle-bar"></div>
 					<div class="meta-bar"></div>
 					<div class="meta-bar"></div>
 				</div>
+				{% endif %}
+
+				{% for algo in algos %}
 				<div class="resultbox">
-					<a class="stitle">Binary Search </a>
+					<a class="stitle"> {{ algo.name }} </a>
 					<p class="meta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci voluptas eligendi maiores ipsa itaque magnam non delectus, quod neque, ratione modi temporibus ullam accusamus architecto. Labore adipisci excepturi voluptates, accusantium.</p>
 					<p class="meta"> contributors: abc, xyz</p>
 
 				</div>
-				<div class="resultbox">
+				{% endfor %}
+<!-- 				<div class="resultbox">
 					<a class="stitle">Linear Search </a>
 					<p class="meta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci voluptas eligendi maiores ipsa itaque magnam non delectus, quod neque, ratione modi temporibus ullam accusamus architecto. Labore adipisci excepturi voluptates, accusantium.</p>
 					<p class="meta"> contributors: abc, xyz</p>
@@ -41,22 +48,22 @@
 					<a class="stitle">Heap Sort </a>
 					<p class="meta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci voluptas eligendi maiores ipsa itaque magnam non delectus, quod neque, ratione modi temporibus ullam accusamus architecto. Labore adipisci excepturi voluptates, accusantium.</p>
 					<p class="meta"> contributors: abc, xyz</p>
-				</div>
+				</div> -->
 			</section>
 		</div>
-		<!-- <div class="col-sm-3 col-lg-2">
-			<h2 class="stitle text-center">
-				Filtered By
-			</h2>
-			<div class="label label-primary center-block"> Python</div>
-		</div> -->
+
 	</div>
 
 	<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'vue/dist/vue.min.js' %}"></script>
 	<script src="{% static 'main/scripts/app.js' %}"></script>
-
+	<script>
+		$('#form').submit(function(e){
+			e.preventDefault();
+			location = "../" + ($('input').val()).replace(" ", "+")
+		})
+	</script>
 
 </body>
 </html>

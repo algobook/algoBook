@@ -117,7 +117,7 @@ header{
 }
 
 .animated-background {
-    animation-duration: 2s;
+    animation-duration: 1.3s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
     animation-name: placeHolderShimmer;
