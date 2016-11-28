@@ -43,9 +43,3 @@ class Tags(models.Model):
 
 class MyUser(AbstractBaseUser):
 	badges = models.ForeignKey(Badges, on_delete = models.DO_NOTHING)
-
-# Question form for template
-class QuestionForm(ModelForm):
-	class Meta:
-		model = Question
-fields = ['title', 'description', 'tags']
