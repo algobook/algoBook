@@ -2,7 +2,7 @@ from django.db import models
 from datetime import date
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.base_user import AbstractBaseUser
 
 # Create your models here.
 class Algo(models.Model):
