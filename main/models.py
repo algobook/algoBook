@@ -39,26 +39,9 @@ class Tags(models.Model):
 	def __str__(self):
 		return self.name
 
-# User information
-class User(models.Model):
-	username = models.CharField(max_length = 30, primary_key = True, null = False, blank = False)
-	first_name = models.CharField(max_length = 20, null = False, blank = False)
-	last_name = models.CharField(max_length = 15, null = False, blank = False)
-	password = models.CharField(max_length = 30, null = False, blank = False)
-    # badges not integrated yet
-	#badges = models.ForeignKey(Badges, on_delete = models.DO_NOTHING)
 
-	def __unicode__(self):
-		return self.name
-
-	def __str__(self):
-		return self.name
-
-# User form for template
-class UserForm(ModelForm):
-	class Meta:
-		model = User
-		fields = ['username', 'first_name', 'last_name', 'password']
+class MyUser(AbstractBaseUser):
+	badges = models.ForeignKey(Badges, on_delete = models.DO_NOTHING)
 
 # Question form for template
 class QuestionForm(ModelForm):
