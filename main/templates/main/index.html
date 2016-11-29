@@ -8,15 +8,17 @@
 	<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	<title>algoBook : The Curated Book of Algorithms</title>
 </head>
-<body>
+<body id="app">
 	<div class="container-fluid">
 		<div class="content">
 			<h1 class="title text-center"> algoBook</h1>
 			<form id="form" action="./search" class="form" method="get">
-				<input type="text" class="form-control searchbox">
+				<input type="text" v-model="query" class="form-control searchbox">
 			</form>
+			{{ query }}
 		</div>
 	</div>
+
 	<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'vue/dist/vue.min.js' %}"></script>
