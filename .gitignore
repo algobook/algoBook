@@ -173,3 +173,4 @@ fabric.properties
 
 #Custom
 algoBook/staticfiles
+db.sqlite3
