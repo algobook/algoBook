@@ -6,6 +6,4 @@ var app = new Vue({
 })
 
 
-
-
 Vue.component('algo', {})

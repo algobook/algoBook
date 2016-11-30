@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'registration',
+    'crispy_forms',
     'django.contrib.staticfiles',
 ]
 
@@ -120,6 +122,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+# Redux registration settings
+ACCOUNT_ACTIVATION_DAYS = 0 # Instant activation; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
