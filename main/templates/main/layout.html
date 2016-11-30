@@ -9,16 +9,13 @@
 	<title>algoBook : The Curated Book of Algorithms</title>
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="content">
-			<h1 class="title text-center"> algoBook</h1>
-			<input type="text" class="form-control searchbox">
-		</div>
-	</div>
+
+	{% block content %} {% endblock %}
+
 	<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
 	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'vue/dist/vue.min.js' %}"></script>
-	<script src="{% static 'main/scripts/app.js' %}"></script>
+	<script src="{% static 'main/app.js' %}"></script>
 
 
 </body>
