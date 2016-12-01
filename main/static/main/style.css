@@ -152,7 +152,7 @@ header{
 }
 
 p{
-	// color:white;
+	/**color:white;*/
 }
 /*=== 3. Text Outside the Box ===*/
 .etc-login-form {
