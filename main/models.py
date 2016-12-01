@@ -69,4 +69,42 @@ class Code(models.Model):
 	code = models.TextField(max_length=2000, null=False)
 	upvotes = models.PositiveIntegerField(default=0)
 	downvotes = models.PositiveIntegerField(default=0)
+	lang = models.ForeignKey(Tags)
+	
 
+	def __unicode__(self):
+		return self.user.username
+	
+	def __str__(self):
+		return self.user.username
+	
+
+# Example Query I want to generate
+#Select from Algos with codes where tags in [Tags_Array];
+#This is possible in Laravel as Algos::get()->withCodes()->tags()->wherein(tags_Array);
+# Now our javascript will show algos with tag having language flag is true
+#  results : [
+#	{ 
+#               #Algo Object
+#		"title" : "Sometitle",
+#		"..." : "..."
+#		"codes" : [
+#				{ 
+#					"name": "sdsd",
+#					"...": "..."
+#					"tags" : [ 
+#							{	"..." : "..."
+#								"type" : "lang"
+#							},
+#							{
+#								"..." : "..."
+#								"type" : "default"
+#							}
+#						]
+#				},
+#				{ ... }
+#			]
+#	}
+#}
+#
+#
