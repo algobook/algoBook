@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "vue": "^2.0.5"
+    "vue": "^2.0.5",
+    "highlight": "^9.8.0"
   }
 }
