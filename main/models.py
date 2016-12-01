@@ -11,7 +11,6 @@ class Algo(models.Model):
 	lang = models.CharField(max_length = 10)
 	created_at = models.DateTimeField('created_at', auto_now = True)
 	updated_at = models.DateTimeField('updated_at', auto_now = True)
-	code = models.CharField(max_length = 10000)
 	slug = models.CharField(max_length = 256)
 	tags = models.ManyToManyField('Tags')
 
@@ -26,6 +25,7 @@ class Algo(models.Model):
 
 
 # User will get badges
+# TODO: Keep this for second stage
 class Badges(models.Model):
 	name = models.CharField(max_length = 30)
 	description = models.TextField(max_length = 200, null = False, blank = False)
@@ -40,6 +40,8 @@ class Badges(models.Model):
 class Tags(models.Model):
 	name = models.CharField(max_length = 30, primary_key = True)
 	description = models.TextField(max_length = 100, null = False, blank = False)
+	#tags are searchable
+	slug = models.CharField(max_length=30, unique=True, null=False)
 
 	def __unicode__(self):
 		return self.name
@@ -60,3 +62,11 @@ class Profile(models.Model):
 	
 	def __str__(self):
 		return self.username
+
+class Code(models.Model):
+	user = models.OneToOneField(User)
+	algo = models.ForeignKey(Algo, on_delete = models.DO_NOTHING)
+	code = models.TextField(max_length=2000, null=False)
+	upvotes = models.PositiveIntegerField(default=0)
+	downvotes = models.PositiveIntegerField(default=0)
+
