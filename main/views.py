@@ -14,8 +14,8 @@ from .forms import (
 def index(request):
 	return render(request, 'main/index.html')
 
-def show(request, algo_slug):
-	return HttpResponse(" You Requested to open this algo " % algo_slug)
+def show(request, id):
+    return render(request, "main/algo.html")
 
 def search(request, query):
 	query = query.replace("+", " ")
