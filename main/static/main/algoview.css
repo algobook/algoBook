@@ -141,7 +141,7 @@ pre{
 }
 
 .codebox{
-	margin-top:20px;
+	margin-top:10px;
 }
 
 .codebox .meta{
@@ -158,4 +158,22 @@ pre{
 
 .fav{
 	color:#F77669;
+}
+.codebox *::selection {
+  background-color: #3e4451;
+}
+
+.codebox:first-child{
+	margin-top: 3rem;
+}
+.score{
+	font-size: 2rem;
+	color: #fff;
+}
+
+
+
+
+header{
+	height: 80px;
 }
