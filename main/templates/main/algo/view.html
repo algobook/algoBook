@@ -27,6 +27,20 @@ h1.title{
 		</div>
 	</div>
 	
+	<div class="row ">
+		<div class="container codebox addans">
+			<textarea class="form-control" v-model="data" placeholder="Submit your own version of algorithm"></textarea>
+			<button class="btn btn-danger pull-right" style="margin-top:20px;">Post Your Algorithm</button>
+			
+			<div class="container">
+				<pre>
+					<code class="css">{{ "{{data}" }}}</code>
+				</pre>
+			</div>
+
+		</div>
+
+	</div>
 	<!-- Disqus -->
 	<div class="row codebox">
 		<div class="container">
@@ -34,6 +48,7 @@ h1.title{
 		</div>
 	</div>
 	<!-- ./Disqus -->
+
 </div>
 
 

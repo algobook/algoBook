@@ -171,8 +171,22 @@ pre{
 	color: #fff;
 }
 
+.addans{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.addans textarea{
+	background-color: transparent;
+	color:#fff;
+
+	height: 130px;
+}
+.addans textarea:focus, .addans textarea:active{
+	box-shadow: none;
 
 
+}
 
 header{
 	height: 80px;
