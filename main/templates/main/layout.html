@@ -6,11 +6,12 @@
 	<link rel="manifest" href="{% static 'main/manifest.json' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'main/style.css' %}">
+	<link rel="stylesheet" href="{% static 'highlight/src/styles/atom-one-dark.css' %}">
+	{% block headextended %} {% endblock %}
 	<title>algoBook : The Curated Book of Algorithms</title>
 </head>
 <body>
 
-	{% include "main/navbar.html" %}
 
 	{% block content %} {% endblock %}
 
@@ -18,7 +19,14 @@
 	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'vue/dist/vue.min.js' %}"></script>
 	<script src="{% static 'main/app.js' %}"></script>
-
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+	<script>
+		$(document).ready(function() {
+		  $('pre code').each(function(i, block) {
+		    hljs.highlightBlock(block);
+		  });
+		});
+	</script>
 
 </body>
 </html>

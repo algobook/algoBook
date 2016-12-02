@@ -1,0 +1,35 @@
+{% extends "main/layout.html" %}
+
+
+{% block content %}
+
+{% include "main/algo/nav.html" %}
+
+<div class="container">
+
+			<pre>	
+				<code class="cs">
+					using System;
+
+					#pragma warning disable 414, 3021
+
+
+					async Task<int, int> AccessTheWebAsync()
+					{
+					    Console.WriteLine("Hello, World!");
+					    string urlContents = await getStringTask;
+					    return urlContents.Length;
+					}
+				</code>
+			</pre>
+
+			<!--/container-->
+
+</div>
+{% endblock %}
+
+
+{% block headextended %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'main/algoview.css' %}">
+{% endblock %}

@@ -15,7 +15,7 @@ def index(request):
 	return render(request, 'main/index.html')
 
 def show(request, id):
-    return render(request, "main/algo.html")
+    return render(request, "main/algo/view.html")
 
 def search(request, query):
 	query = query.replace("+", " ")

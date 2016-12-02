@@ -6,6 +6,7 @@
 	<link rel="manifest" href="{% static 'main/manifest.json' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'main/style.css' %}">
+	<link rel="stylesheet" href="{% static 'highlight/src/styles/atom-one-dark.css' %}">
 	<title>algoBook : The Curated Book of Algorithms</title>
 </head>
 <body >
@@ -23,7 +24,8 @@
 	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
 	<script src="{% static 'vue/dist/vue.min.js' %}"></script>
 	<script src="{% static 'main/app.js' %}"></script>
-
+	<script src="{% static 'highlight/src/highlight.js' %}"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
 	<script>
 		$('#form').submit(function(e){
 			e.preventDefault();
