@@ -41,7 +41,7 @@ class Tags(models.Model):
 	name = models.CharField(max_length = 30, primary_key = True)
 	description = models.TextField(max_length = 100, null = False, blank = False)
 	#tags are searchable
-	slug = models.CharField(max_length=30, unique=True, null=False)
+	slug = models.CharField(max_length = 30, unique = True, null = False)
 
 	def __unicode__(self):
 		return self.name
@@ -51,48 +51,47 @@ class Tags(models.Model):
 
 
 class Profile(models.Model):
-	user = models.OneToOneField(User, on_delete = models.CASCADE)
+	user = models.OneToOneField(User, primary_key = True, on_delete = models.CASCADE)
 	bio = models.TextField(max_length = 500, blank = True)
 	location = models.CharField(max_length = 30, blank = True)
 	birth_date = models.DateField(null = True, blank = True)
-	badges = models.ForeignKey(Badges, on_delete = models.DO_NOTHING)
+	badges = models.ForeignKey(Badges, null = True, blank = True, on_delete = models.DO_NOTHING)
 
 	def __unicode__(self):
 		return self.username
-	
+
 	def __str__(self):
 		return self.username
 
 class Code(models.Model):
 	user = models.OneToOneField(User)
 	algo = models.ForeignKey(Algo, on_delete = models.DO_NOTHING)
-	code = models.TextField(max_length=2000, null=False)
-	upvotes = models.PositiveIntegerField(default=0)
-	downvotes = models.PositiveIntegerField(default=0)
+	code = models.TextField(max_length = 2000, null = False)
+	upvotes = models.PositiveIntegerField(default = 0)
+	downvotes = models.PositiveIntegerField(default = 0)
 	lang = models.ForeignKey(Tags)
-	
 
 	def __unicode__(self):
 		return self.user.username
-	
+
 	def __str__(self):
 		return self.user.username
-	
+
 
 # Example Query I want to generate
 #Select from Algos with codes where tags in [Tags_Array];
 #This is possible in Laravel as Algos::get()->withCodes()->tags()->wherein(tags_Array);
 # Now our javascript will show algos with tag having language flag is true
 #  results : [
-#	{ 
+#	{
 #               #Algo Object
 #		"title" : "Sometitle",
 #		"..." : "..."
 #		"codes" : [
-#				{ 
+#				{
 #					"name": "sdsd",
 #					"...": "..."
-#					"tags" : [ 
+#					"tags" : [
 #							{	"..." : "..."
 #								"type" : "lang"
 #							},

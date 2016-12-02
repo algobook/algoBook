@@ -124,8 +124,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Redux registration settings
-ACCOUNT_ACTIVATION_DAYS = 0 # Instant activation; you may, of course, use a different value.
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 7 # Instant activation; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+REGISTRATION_DEFAULT_FROM_EMAIL = os.environ['DJANGO_EMAIL']
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+#EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = os.environ['DJANGO_EMAIL']
+EMAIL_HOST_PASSWORD = os.environ['DJANGO_EMAIL_PASSWORD']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
