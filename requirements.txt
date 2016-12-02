@@ -1,9 +1,11 @@
 dj-database-url==0.4.1
 Django==1.10.2
 django-crispy-forms==1.6.1
+django-datetime-widget==0.9.3
 django-environ==0.4.0
 django-registration-redux==1.4
 gunicorn==19.6.0
 psycopg2==2.6.2
+pytz==2016.7
 six==1.10.0
 whitenoise==3.2.2

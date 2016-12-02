@@ -15,7 +15,7 @@ h1.title{
 
 h2.title{
 	font-size: 35px;
-	color:#fff;	
+	color:#fff;
 	font-family: 'Source Code Pro', monospace;
 	line-height: 15px;
 }
@@ -132,7 +132,7 @@ header{
 @media(max-width:748px) {
 	h1.title{
 		font-size: 6rem;
-		
+
 	}
 	.searchbox{
 		width: 95%;
