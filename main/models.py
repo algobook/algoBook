@@ -58,10 +58,10 @@ class Profile(models.Model):
 	badges = models.ForeignKey(Badges, null = True, blank = True, on_delete = models.DO_NOTHING)
 
 	def __unicode__(self):
-		return self.username
+		return self.user.username
 
 	def __str__(self):
-		return self.username
+		return self.user.username
 
 class Code(models.Model):
 	user = models.OneToOneField(User)
