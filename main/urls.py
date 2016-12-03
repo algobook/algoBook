@@ -1,7 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from . import regbackend
-
 from . import views
 
 urlpatterns = [
@@ -11,5 +10,8 @@ urlpatterns = [
     url(r'^accounts/update_profile/$', views.update_profile, name = 'update_profile'),
     url(r'^accounts/register/$', regbackend.MyRegistrationView.as_view(), name = 'registration_register'),
     url(r'^accounts/', include('registration.backends.default.urls')),
+
+    url(r'^algos/create', view.create_algo)
+
     url(r'^(?P<query>[\w+-]+)/$', views.search, name = "search_algo"),
 ]
