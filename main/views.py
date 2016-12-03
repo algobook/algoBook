@@ -48,7 +48,7 @@ def create_algo(request):
 	user = request.user
 	tags = []
 	
-	for tag in request.POST.get("name").split(""):
+	for tag in request.POST.get("name").split():
 		t,created = Tags.objects.get_or_create(slug=slugify(tag))
 		t.slug = slugify(tag)
 		t.name = tag

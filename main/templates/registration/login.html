@@ -1,28 +1,43 @@
-{% extends "main/layout.html" %}
-{% load i18n %}
-{% load crispy_forms_tags %}
-
-
-{% block content %}
-<div class='row'>
-<div class='col-sm-6 col-sm-offset-3'>
-<h1>Login</h1>
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form|crispy }}
-
-  <input class='btn btn-block btn-primary' type="submit" value="{% trans 'Submit' %}" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
+{% extends "main/layout.html" %} {% load i18n %} {% load crispy_forms_tags %} {% block content %}
+<br/>
+<div class='col-sm-12'>
+    <div class='col-sm-6 col-lg-4 col-lg-offset-4 col-sm-offset-3'>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2>Login</h2>
+                <form method="post" action=".">
+                    {% csrf_token %} {{ form|crispy }}
+                    <input class='btn btn-block btn-success btn-md' type="submit" value="{% trans 'Submit' %}" style="margin-top:10px;" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+                <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+                <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %} {% block headextended %}
+<style type="text/css">
+input {
+    width: 100%;
+    outline: none;
+}
 
-</div>
-<hr/>
-<div class='row'>
-<div class='col-sm-6 col-sm-offset-3 text-align-center'>
-<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
-<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
-</div>
-</div>
+.help-block {
+    font-weight: 400;
+}
 
+.help-block strong {
+    color: #c73e3e;
+    font-weight: 400;
+}
+
+.panel {
+    margin-top: 100px;
+}
+</style>
+{% endblock %} {% block footerextended %}
+<script>
+$('input').addClass('form-control')
+</script>
 {% endblock %}
