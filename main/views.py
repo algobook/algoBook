@@ -42,7 +42,7 @@ def create_algo(request):
 		tags.append(t);
 
 
-	lang = Tags.obecjts.get(slug=slugify(request.POST.lang))
+	lang = Tags.objects.get(slug=slugify(request.POST.lang))
 	lang.isLang = 1;
 	lang.save()
 
