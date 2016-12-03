@@ -6,14 +6,17 @@
 	<div class="container">
 		<div class="col-sm-10 col-lg-10">
 			<section id="results">
+
 				<div v-show="searching" class="resultbox resultbar animated-background">
-					<div class="stitle-bar"></div>
+					<div class="stitle-bar">
+						<p v-show="notfound" class="text-center" style="color:#fff; padding-top:4px;"> No Results :(</p>
+					</div>
 					<div class="meta-bar"></div>
 					<div class="meta-bar"></div>
 				</div>
 
 				{% for algo in algos %}
-				<div class="resultbox" v-show="!results.length">
+				<div class="resultbox" v-show="keepit">
 					<a class="stitle" href="/algo/{{algo.id}}"> {{ algo.name }} </a>
 					<p class="meta"> {{ algo.description }}</p>
 					<p class="meta"> contributors: abc, xyz</p>
@@ -45,6 +48,7 @@
 		</div>
 		<div class="col-sm-2 col-lg-2">
 			<section id="results">
+				<p class="text-danger" v-show="createError"> Search cannot be empty!! </p>
 				<button class="btn btn-danger btn-block" v-on:click="createAlgo()">Add Your Algo</button>
 			</section>
 		</div>

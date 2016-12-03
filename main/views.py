@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
 from django.shortcuts import render
 from django.template.defaultfilters import slugify
 import urllib
@@ -31,7 +31,10 @@ def search(request, query):
 def api_search(request,query):
 	query = query.replace("+", " ")
 	algos = Algo.objects.filter(name__icontains = query).values("name", "slug", "description")
-	return JsonResponse({ 'results': list(algos) })
+	data = list(algos)
+	if not len(data):
+		return HttpResponseNotFound("Not Found")
+	return JsonResponse({ 'results': data })
 	
 	# TODO: tag system in second stage
 	# for tag in query.split("+"):
