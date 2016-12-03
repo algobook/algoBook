@@ -1,44 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
-	{% load static %}
-	<link rel="manifest" href="{% static 'main/manifest.json' %}">
-	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static 'main/style.css' %}">
-	<title>algoBook : The Curated Book of Algorithms</title>
-</head>
-<body>
-	<header class="">
-		<div class="container-fluid">
-			<div class="col-sm-2"><h2 class="title"> algoBook </h2></div>
-			<div class="col-sm-6">
-				<form id="form" action="./search" class="form" method="get">
-					<input type="text" class="form-control searchbox searchbox-small" value="{{ query }}">
-				</form>
-			</div>
-		</div>
-	</header>
+{% extends 'main/layout.html' %}
 
+{% block content %}
+
+	{% include 'main/navbar.html' %}
 	<div class="container">
 		<div class="col-sm-10 col-lg-10">
 			<section id="results">
-				{% if not algos %}
-				<div class="resultbox resultbar animated-background">
+				<div v-show="searching" class="resultbox resultbar animated-background">
 					<div class="stitle-bar"></div>
 					<div class="meta-bar"></div>
 					<div class="meta-bar"></div>
 				</div>
-				{% endif %}
 
 				{% for algo in algos %}
-				<div class="resultbox">
+				<div class="resultbox" v-show="!results.length">
 					<a class="stitle" href="/algo/{{algo.id}}"> {{ algo.name }} </a>
-					<p class="meta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci voluptas eligendi maiores ipsa itaque magnam non delectus, quod neque, ratione modi temporibus ullam accusamus architecto. Labore adipisci excepturi voluptates, accusantium.</p>
+					<p class="meta"> {{ algo.description }}</p>
 					<p class="meta"> contributors: abc, xyz</p>
 
 				</div>
 				{% endfor %}
+
+				<div class="results" v-show="results.length">
+					<div class="resultbox" v-for="algo in results">
+						<a class="stitle" href="/algo/{!algo.id!}"> {! algo.name !} </a>
+						<p class="meta"> {! algo.description !}</p>
+						<p class="meta"> contributors: abc, xyz</p>
+
+					</div>
+
+				</div>
+				
 <!-- 				<div class="resultbox">
 					<a class="stitle">Linear Search </a>
 					<p class="meta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci voluptas eligendi maiores ipsa itaque magnam non delectus, quod neque, ratione modi temporibus ullam accusamus architecto. Labore adipisci excepturi voluptates, accusantium.</p>
@@ -51,19 +43,15 @@
 				</div> -->
 			</section>
 		</div>
+		<div class="col-sm-2 col-lg-2">
+			<section id="results">
+				<button class="btn btn-danger btn-block" v-on:click="createAlgo()">Add Your Algo</button>
+			</section>
+		</div>
 
 	</div>
+	<div id="csrf" hidden="" class="hidden">
+		{% csrf_token %}
+	</div>
 
-	<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
-	<script src="{% static 'vue/dist/vue.min.js' %}"></script>
-	<script src="{% static 'main/scripts/app.js' %}"></script>
-	<script>
-		$('#form').submit(function(e){
-			e.preventDefault();
-			location = "../" + ($('input').val()).replace(" ", "+")
-		})
-	</script>
-
-</body>
-</html>
+{% endblock %}

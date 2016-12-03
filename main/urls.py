@@ -11,7 +11,8 @@ urlpatterns = [
     url(r'^accounts/register/$', regbackend.MyRegistrationView.as_view(), name = 'registration_register'),
     url(r'^accounts/', include('registration.backends.default.urls')),
 
-    url(r'^algos/create', view.create_algo)
+    url(r'^algos/create', views.create_algo),
+    url(r'^algos/search/(?P<query>[\w+-]+)/$', views.api_search, name = "api_search"),
 
     url(r'^(?P<query>[\w+-]+)/$', views.search, name = "search_algo"),
 ]

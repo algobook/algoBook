@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.template.defaultfilters import slugify
 import urllib
@@ -25,8 +25,19 @@ def show(request, id):
 
 def search(request, query):
 	query = query.replace("+", " ")
-	algos = Algo.objects.filter(name__contains = query)
+	algos = Algo.objects.filter(name__icontains = query)
 	return render(request, 'main/search.html', {'algos' : algos, 'query': query})
+
+def api_search(request,query):
+	query = query.replace("+", " ")
+	algos = Algo.objects.filter(name__icontains = query).values("name", "slug", "description")
+	return JsonResponse({ 'results': list(algos) })
+	
+	# TODO: tag system in second stage
+	# for tag in query.split("+"):
+		# tags.append( uglify() )
+
+
 
 
 @login_required
