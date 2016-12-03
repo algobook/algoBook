@@ -7,8 +7,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Algo(models.Model):
 	name = models.CharField(max_length = 256)
-	description = models.CharField(max_length = 500)
-	lang = models.CharField(max_length = 10)
+	description = models.CharField(max_length = 500, default="")
 	created_at = models.DateTimeField('created_at', auto_now = True)
 	updated_at = models.DateTimeField('updated_at', auto_now = True)
 	slug = models.CharField(max_length = 256)
@@ -64,9 +63,9 @@ class Profile(models.Model):
 		return self.user.username
 
 class Code(models.Model):
-	user = models.OneToOneField(User)
+	user = models.ForeignKey(User)
 	algo = models.ForeignKey(Algo, on_delete = models.DO_NOTHING)
-	code = models.TextField(max_length = 2000, null = False)
+	code = models.TextField(max_length = 20000, null = False)
 	upvotes = models.PositiveIntegerField(default = 0)
 	downvotes = models.PositiveIntegerField(default = 0)
 	lang = models.ForeignKey(Tags)

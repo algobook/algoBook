@@ -187,6 +187,29 @@ pre{
 
 
 }
+.userbox{
+	background:  rgba(55, 55, 55, 0.94);
+	text-align: center;
+	padding: 10px;
+	word-wrap: break-word;
+	border-radius:0;
+	margin-bottom: 0;
+	margin-right: -15px;
+}
+.userbox a {
+	color: #fff;
+}
+
+.algotitle{
+	color: #fff;
+	margin-bottom: 2rem;
+	font-family: monospace, Helvetica;
+}
+
+.algolang{
+	font-size: 1.5rem;
+	color: #fff;
+}
 
 header{
 	height: 80px;

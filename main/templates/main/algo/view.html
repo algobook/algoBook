@@ -6,6 +6,10 @@
 {% include "main/algo/nav.html" %}
 
 <div class="container ">
+	<h1 class="algotitle" > Binary Searching </h1>
+	<p class="lead algolang"> 
+		in <span class="label label-danger"> Python</span> 
+	</p>
 	<div class="row codebox">
 		<div class="col-sm-2 col-lg-1 col-xs-hidden meta">
 			<i class="glyphicon glyphicon-chevron-up"></i>
@@ -24,6 +28,11 @@ h1.title{
 }
 				</code>
 			</pre>
+		</div>
+		<div class="col-sm-3 col-lg-2 col-sm-offset-9 col-lg-offset-10">
+			<div class="userbox">
+				<a href="/user/id"> Poush </a>
+			</div>
 		</div>
 	</div>
 	
@@ -73,10 +82,19 @@ h1.title{
 	</script>
 	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
+
+
 {% endblock %}
 
 
 {% block headextended %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'main/algoview.css' %}">
+{% endblock %}
+
+{% block footerextended %}
+	<!-- TODO: second stage, change languages -->
+	<script type="text/javascript">
+		$('#selectlang').popover();
+	</script>
 {% endblock %}

@@ -6,6 +6,8 @@ from .models import (
 	Profile
 	)
 
+
+
 class DateInput(forms.DateInput):
 	input_type = 'date'
 
@@ -20,6 +22,7 @@ class UserForm(forms.ModelForm):
 		if instance and instance.pk:
 			self.fields['username'].widget.attrs['disabled'] = True
 
+
 class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
@@ -27,3 +30,4 @@ class ProfileForm(forms.ModelForm):
 		widgets = {
             'birth_date': DateInput(),
         }
+
