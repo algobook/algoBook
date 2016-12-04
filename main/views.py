@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.template.defaultfilters import slugify
 import urllib
@@ -54,21 +54,26 @@ def create_algo(request):
 	# 	t.name = tag
 	# 	t.save()
 	# 	tags.append(t);
+	# 	
+	if not request.GET.get("name"):
+		return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
-	lang = Tags.objects.get_or_create(slug=slugify(request.POST.get("lang", "default")))
-	lang.isLang = 1;
-	lang.name = request.POST.lang
+	langOpted = request.GET.get("lang", "default")
+
+	lang, created = Tags.objects.get_or_create( slug=slugify( langOpted ) )
+	lang.name = langOpted
 	lang.save()
 
-	algoname = request.POST.get("name")
+	algoname = request.GET.get("name")
 	
 	algo = Algo(
 			name = algoname,
-			slug = slugify(algoname),
-			Tags = [lang]
+			slug = slugify( algoname )
 		)
 
 	algo.save();
+
+	return HttpResponseRedirect("/algo/" + algo.slug + "?lang=" + langOpted)
 
 
 @login_required

@@ -37,10 +37,11 @@ class Badges(models.Model):
 
 # Question will have tags
 class Tags(models.Model):
-	name = models.CharField(max_length = 30, primary_key = True)
+	name = models.CharField(max_length = 30)
 	description = models.TextField(max_length = 100, null = False, blank = False)
 	#tags are searchable
 	slug = models.CharField(max_length = 30, unique = True, null = False)
+	isLang = models.BooleanField(default=False)
 
 	def __unicode__(self):
 		return self.name

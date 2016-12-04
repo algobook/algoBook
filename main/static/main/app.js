@@ -21,7 +21,7 @@ var app = new Vue({
 			}
 
 			var form = document.createElement("form")
-			form.method = "POST"
+			form.method = "GET"
 			form.action = "../../algos/create"
 
 			var input = document.createElement("input")
@@ -32,7 +32,7 @@ var app = new Vue({
 			csrf = $("#csrf").children()[0]
 
 			form.appendChild(input)
-			form.appendChild(csrf)
+
 			form.submit();
 		},
 
