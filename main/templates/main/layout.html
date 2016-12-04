@@ -21,6 +21,7 @@
 	<script src="{% static 'vue/dist/vue.min.js' %}"></script>
 	<script src="{% static 'main/app.js' %}"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+	
 	<script>
 		$(document).ready(function() {
 		  $('pre code').each(function(i, block) {
@@ -29,6 +30,12 @@
 		});
 	</script>
 
+	<script>
+		$('#form').submit(function(e){
+			e.preventDefault();
+			location = ($('input').val()).split(" ").join("+")
+		})
+	</script>
 	{% block footerextended %} {% endblock %}
 
 </body>

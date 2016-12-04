@@ -2,7 +2,7 @@ var app = new Vue({
 	el: '#app',
 	delimiters: ['{!', '!}'],
 	data: {
-		query: window.location.pathname.split("/").join("").split("+").join(" "),
+		query: window.location.pathname.split("/").pop().split("+").join(" "),
 		data: "",
 		searching: 0,
 		results: [],
