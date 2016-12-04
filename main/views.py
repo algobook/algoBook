@@ -84,6 +84,7 @@ def create_algo(request):
 
 @login_required
 def add_code_to_algo(request):
+	
 	user = request.user
 	algo = Algo.objects.get(pk=request.POST.get("algo_id"))
 	lang = Tags.objects.filter(name=request.POST.get("lang")).filter(isLang=1);
@@ -97,6 +98,13 @@ def add_code_to_algo(request):
 			lang=lang
 		)
 	code.save();
+
+@login_required
+def add_description_to_algo(request):
+	slug = request.POST.slug
+	desc = request.POST.description
+
+	algo = Algo.objects.get( slug=slugify(slug) )
 
 
 @login_required

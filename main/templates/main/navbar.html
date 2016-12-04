@@ -1,13 +1,28 @@
-	<header class="">
-		<div class="container-fluid">
-		{% block content %}
-			<div class="col-sm-2"><h2 class="title"> algoBook </h2></div>
-			<div class="col-sm-6">
-				<form id="form" action="./search" class="form" method="get">
-					<input type="text" class="form-control searchbox searchbox-small" v-on:keyup="getData()" v-model="query">
-				</form>
-			</div>
-			<div class="col-sm-4">
+<header class="">
+    <div class="container-fluid">
+        {% block content %}
+        <div class="col-sm-2">
+            <h2 class="title"> algoBook </h2></div>
+        <div class="col-sm-6">
+            <form id="form" action="./search" class="form" method="get">
+                <input type="text" class="form-control searchbox searchbox-small" v-on:keyup="getData()" v-model="query">
+            </form>
+        </div>
+        <div class="col-sm-4">
+            <ul class="nav navbar-right">
+                <li class="dropdown nav-user">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- <div class="col-sm-4">
 
 			{% if request.user.is_authenticated %}
 			<a href="/accounts/profile">{{ request.user }}</a>
@@ -19,7 +34,7 @@
 			{% endif %}
 
 			<div class="clearfix"> </div>
-		   </div>
-		{% endblock %}
-		</div>
-	</header>
+		   </div> -->
+        {% endblock %}
+    </div>
+</header>

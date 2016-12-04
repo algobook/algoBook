@@ -93,7 +93,7 @@ header{
 .stitle-bar{
 	width: 200px;
 	height: 25px;
-	// background: #fff;
+	/** background: #fff; **/
 	margin-bottom: 10px;
 	opacity: 0.3;
 	background: rgba(255, 255, 255, 0.5);
@@ -289,4 +289,14 @@ label.form-invalid:after {
 }
 .login-form-main-message.error {
   border-left-color: #e74c3c;
+}
+
+.nav-user{
+  line-height: 40px;
+  margin-top: -5px;
+  height: 60px;
+  color: #fff;
+}
+.nav-user:hover, .nav-user:focus{
+  color: #fff;
 }

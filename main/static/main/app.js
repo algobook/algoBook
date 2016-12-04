@@ -29,7 +29,7 @@ var app = new Vue({
 				return 0;
 			}
 
-			var form = document.createElement("form")
+			var form = $("form")[0]
 			form.method = "GET"
 			form.action = "../../algos/create"
 
