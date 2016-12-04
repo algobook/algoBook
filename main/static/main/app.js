@@ -33,7 +33,7 @@ var app = new Vue({
 			form.method = "GET"
 			form.action = "../../algos/create"
 
-			var input = document.createElement("input")
+			var input = $("input")[0]
 			input.type="text"
 			input.name="name"
 			input.value = this.query
