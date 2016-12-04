@@ -5,9 +5,9 @@ from django.shortcuts import render
 from django.template.defaultfilters import slugify
 import urllib
 
-from .models import  ( 
-	Algo, 
-	Code, 
+from .models import  (
+	Algo,
+	Code,
 	Tags
 )
 
@@ -43,7 +43,7 @@ def api_search(request,query):
 	if not len(data):
 		return HttpResponseNotFound("Not Found")
 	return JsonResponse({ 'results': data })
-	
+
 	# TODO: tag system in second stage
 	# for tag in query.split("+"):
 		# tags.append( uglify() )
@@ -52,17 +52,17 @@ def api_search(request,query):
 @login_required
 def create_algo(request):
 	user = request.user
-	
+
 	# TODO : tags in second stage
 	# tags = []
-	
+
 	# for tag in request.POST.get("name").split():
 	# 	t,created = Tags.objects.get_or_create(slug=slugify(tag))
 	# 	t.slug = slugify(tag)
 	# 	t.name = tag
 	# 	t.save()
 	# 	tags.append(t);
-	# 	
+	#
 	if not request.GET.get("name"):
 		return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
@@ -73,7 +73,7 @@ def create_algo(request):
 	lang.save()
 
 	algoname = request.GET.get("name")
-	
+
 	algo,created = Algo.objects.get_or_create( slug = slugify( algoname ) )
 	algo.name = algoname
 
@@ -84,11 +84,11 @@ def create_algo(request):
 
 @login_required
 def add_code_to_algo(request):
-	
+
 	user = request.user
 	algo = Algo.objects.get(pk=request.POST.get("algo_id"))
 	lang = Tags.objects.filter(name=request.POST.get("lang")).filter(isLang=1);
-	
+
 	code = Code(
 			user=user,
 			algo=algo,
@@ -106,7 +106,7 @@ def add_description_to_algo(request):
 
 	algo = Algo.objects.get( slug=slugify(slug) )
 
-
+#TODO: To be implemented later
 @login_required
 @transaction.atomic
 def update_profile(request):
