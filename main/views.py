@@ -74,10 +74,8 @@ def create_algo(request):
 
 	algoname = request.GET.get("name")
 	
-	algo = Algo(
-			name = algoname,
-			slug = slugify( algoname )
-		)
+	algo,created = Algo.objects.get_or_create( slug = slugify( algoname ) )
+	algo.name = algoname
 
 	algo.save();
 

@@ -33,7 +33,7 @@
 	<script>
 		$('#form').submit(function(e){
 			e.preventDefault();
-			location = ($('input').val()).split(" ").join("+")
+			location = "../../"+($('input').val()).split(" ").join("+")
 		})
 	</script>
 	{% block footerextended %} {% endblock %}

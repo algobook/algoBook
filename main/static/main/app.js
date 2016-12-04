@@ -1,8 +1,12 @@
 var app = new Vue({
 	el: '#app',
-	delimiters: ['{!', '!}'],
+	delimiters: ['((', '))'],
 	data: {
-		query: window.location.pathname.split("/").pop().split("+").join(" "),
+		query: function(){
+			path = window.location.pathname.split("/")
+			path = path[path.length-2].split("+").join(" ")
+			return path
+		}() ,
 		data: "",
 		searching: 0,
 		results: [],
@@ -11,6 +15,11 @@ var app = new Vue({
 		notfound: 0
 	},
 	methods: {
+		
+		onload: function(){
+			
+		},
+
 		createAlgo: function(){
 			this.createError = false;
 
@@ -51,6 +60,9 @@ var app = new Vue({
 				that.notfound = 1
 			})
 
+		},
+		urltoalgo: function(uri){
+			return "../algo/" + uri;
 		}
 	}
 })
