@@ -41,23 +41,23 @@ def api_search(request,query):
 		# tags.append( uglify() )
 
 
-
-
 @login_required
 def create_algo(request):
 	user = request.user
-	tags = []
 	
-	for tag in request.POST.get("name").split():
-		t,created = Tags.objects.get_or_create(slug=slugify(tag))
-		t.slug = slugify(tag)
-		t.name = tag
-		t.save()
-		tags.append(t);
+	# TODO : tags in second stage
+	# tags = []
+	
+	# for tag in request.POST.get("name").split():
+	# 	t,created = Tags.objects.get_or_create(slug=slugify(tag))
+	# 	t.slug = slugify(tag)
+	# 	t.name = tag
+	# 	t.save()
+	# 	tags.append(t);
 
-
-	lang = Tags.objects.get(slug=slugify(request.POST.lang))
+	lang = Tags.objects.get_or_create(slug=slugify(request.POST.lang))
 	lang.isLang = 1;
+	lang.name = request.POST.lang
 	lang.save()
 
 	algoname = request.POST.get("name")
@@ -65,7 +65,7 @@ def create_algo(request):
 	algo = Algo(
 			name = algoname,
 			slug = slugify(algoname),
-			Tags = tags
+			Tags = [lang]
 		)
 
 	algo.save();
