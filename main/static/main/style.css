@@ -1,117 +1,121 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro|VT323');
-body{
-	background: #191919;
+body {
+    background: #191919;
 }
 
 .content {
-	width: 100%;
+    width: 100%;
 }
 
-h1.title{
-	font-family: 'Source Code Pro', monospace;
-	color: #fff;
-	font-size: 80px;
+h1.title {
+    font-family: 'Source Code Pro', monospace;
+    color: #fff;
+    font-size: 80px;
 }
 
-h2.title{
-	font-size: 35px;
-	color:#fff;
-	font-family: 'Source Code Pro', monospace;
-	line-height: 15px;
+h2.title {
+    font-size: 35px;
+    color: #fff;
+    font-family: 'Source Code Pro', monospace;
+    line-height: 15px;
 }
 
-.searchbox{
-	border: 1.3px solid #fff;
-	border-radius: 30px;
-	background: transparent;
-	padding: 10px 30px;
-	height: 60px;
-	width: 60%;
-	margin: 30px auto;
-	color: #fff;
-	font-size:20px;
-	font-family: 'Source Code Pro', monospace;
-	text-align: center;
+.searchbox {
+    border: 1.3px solid #fff;
+    border-radius: 30px;
+    background: transparent;
+    padding: 10px 30px;
+    height: 60px;
+    width: 60%;
+    margin: 30px auto;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Source Code Pro', monospace;
+    text-align: center;
 }
 
-.searchbox:focus, .searchbox:active{
-	outline:none;
-	box-shadow: none;
-	border-color: #34BDAA;
+.searchbox:focus,
+.searchbox:active {
+    outline: none;
+    box-shadow: none;
+    border-color: #34BDAA;
 }
 
-.searchbox-small{
-	height: 40px;
-	width: 400px;
-	border: 1px solid #606060;
-	border-radius: 30px;
-	margin-top:10px;
-	margin-left:-15px;
-	margin-bottom:10px;
-	font-size: 14px;
-	text-align: left;
+.searchbox-small {
+    height: 40px;
+    width: 400px;
+    border: 1px solid #606060;
+    border-radius: 30px;
+    margin-top: 10px;
+    margin-left: -15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: left;
 }
 
 
-header{
-	padding: 5px 0 0 0;
-	border-bottom: 1px solid #494949;
+
+header {
+    padding: 5px 0 0 0;
+    border-bottom: 1px solid #494949;
 }
+
 
 /** Search Results CSS */
 
-#results{
-	margin: 20px auto;
+#results {
+    margin: 20px auto;
 }
 
-.resultbox{
-	border: 0.8px solid #020101;
-	border-radius:4px;
-	padding: 15px 20px;
-	background: #252525;
-	margin-bottom: 20px;
+.resultbox {
+    border: 0.8px solid #020101;
+    border-radius: 4px;
+    padding: 15px 20px;
+    background: #252525;
+    margin-bottom: 20px;
 }
 
 .resultbox .meta {
-	margin-top: 5px;
-	color: #777777;
-
+    margin-top: 5px;
+    color: #777777;
 }
 
-.stitle{
-	color: #fff;
-	font-size: 25px;
-	cursor: pointer;
+.stitle {
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
 }
 
-.stitle:hover, .stitle:focus {
-	color: #fff;
+.stitle:hover,
+.stitle:focus {
+    color: #fff;
 }
 
-/**	loading effect box */
 
-.stitle-bar{
-	width: 200px;
-	height: 25px;
-	/** background: #fff; **/
-	margin-bottom: 10px;
-	opacity: 0.3;
-	background: rgba(255, 255, 255, 0.5);
+/** loading effect box */
+
+.stitle-bar {
+    width: 200px;
+    height: 25px;
+    /** background: #fff; **/
+    margin-bottom: 10px;
+    opacity: 0.3;
+    background: rgba(255, 255, 255, 0.5);
 }
 
-.meta-bar{
-	width: 80%;
-	height: 15px;
-	margin-bottom: 10px;
-	background: #777777;
-	opacity: 0.2;
+.meta-bar {
+    width: 80%;
+    height: 15px;
+    margin-bottom: 10px;
+    background: #777777;
+    opacity: 0.2;
 }
 
-@keyframes placeHolderShimmer{
-    0%{
+@keyframes placeHolderShimmer {
+    0% {
         background-position: -800px 0
     }
-    100%{
+    100% {
         background-position: 800px 0
     }
 }
@@ -127,179 +131,235 @@ header{
     background-size: 800px 104px;
     position: relative;
 }
+
+
 /** End */
 
 @media(max-width:748px) {
-	h1.title{
-		font-size: 6rem;
-
-	}
-	.searchbox{
-		width: 95%;
-		border-radius: 4px;
-		border: 1px solid #fff;
-		height: 50px;
-	}
+    h1.title {
+        font-size: 6rem;
+    }
+    .searchbox {
+        width: 95%;
+        border-radius: 4px;
+        border: 1px solid #fff;
+        height: 50px;
+    }
 }
 
-@media (min-width: 748px) {
-	.content{
-		position: absolute;
-	    top: 50%;
-	    left: 50%;
-	    transform: translateX(-50%) translateY(-60%);
-	}
+
+  .searchbox-mobile{
+      width: 100%;
+      border-radius:0;
+      border:none;
+      margin-top: -5px;
+      background-color: #252525;
+      border-bottom: 1px solid black;
+      height: 6rem;
+      -webkit-box-shadow: 0px 3px 5px -9px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 3px 5px -9px rgba(0,0,0,0.75);
+      box-shadow: 0px 3px 5px -9px rgba(0,0,0,0.75);
+
+  }
+
+  .searchbox-mobile:hover, .searchbox-mobile:focus{
+    outline: none;
+    border-bottom: 1px solid black; 
+  }
+
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-80%);
 }
 
-p{
-	/**color:white;*/
+p {
+    /**color:white;*/
 }
+
+
 /*=== 3. Text Outside the Box ===*/
+
 .etc-login-form {
-  color: #919191;
-  padding: 10px 20px;
+    color: #919191;
+    padding: 10px 20px;
 }
+
 .etc-login-form p {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
+
+
 /*=== 4. Main Form ===*/
+
 .login-form-1 {
-  max-width: 300px;
-  border-radius: 5px;
-  display: inline-block;
+    max-width: 300px;
+    border-radius: 5px;
+    display: inline-block;
 }
+
 .main-login-form {
-  position: relative;
+    position: relative;
 }
+
 .login-form-1 .form-control {
-  border: 0;
-  box-shadow: 0 0 0;
-  border-radius: 0;
-  background: transparent;
-  color: #555555;
-  padding: 7px 0;
-  font-weight: bold;
-  height:auto;
+    border: 0;
+    box-shadow: 0 0 0;
+    border-radius: 0;
+    background: transparent;
+    color: #555555;
+    padding: 7px 0;
+    font-weight: bold;
+    height: auto;
 }
+
 .login-form-1 .form-control::-webkit-input-placeholder {
-  color: #999999;
+    color: #999999;
 }
+
 .login-form-1 .form-control:-moz-placeholder,
 .login-form-1 .form-control::-moz-placeholder,
 .login-form-1 .form-control:-ms-input-placeholder {
-  color: #999999;
+    color: #999999;
 }
+
 .login-form-1 .form-group {
-  margin-bottom: 0;
-  border-bottom: 2px solid #efefef;
-  padding-right: 20px;
-  position: relative;
+    margin-bottom: 0;
+    border-bottom: 2px solid #efefef;
+    padding-right: 20px;
+    position: relative;
 }
+
 .login-form-1 .form-group:last-child {
-  border-bottom: 0;
+    border-bottom: 0;
 }
+
 .login-group {
-  background: #ffffff;
-  color: #999999;
-  border-radius: 8px;
-  padding: 10px 20px;
+    background: #ffffff;
+    color: #999999;
+    border-radius: 8px;
+    padding: 10px 20px;
 }
+
 .login-group-checkbox {
-  padding: 5px 0;
+    padding: 5px 0;
 }
+
+
 /*=== 5. Login Button ===*/
+
 .login-form-1 .login-button {
-  position: absolute;
-  right: -25px;
-  top: 50%;
-  background: #ffffff;
-  color: #999999;
-  padding: 11px 0;
-  width: 50px;
-  height: 50px;
-  margin-top: -25px;
-  border: 5px solid #efefef;
-  border-radius: 50%;
-  transition: all ease-in-out 500ms;
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    background: #ffffff;
+    color: #999999;
+    padding: 11px 0;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    border: 5px solid #efefef;
+    border-radius: 50%;
+    transition: all ease-in-out 500ms;
 }
+
 .login-form-1 .login-button:hover {
-  color: #555555;
-  transform: rotate(450deg);
+    color: #555555;
+    transform: rotate(450deg);
 }
+
 .login-form-1 .login-button.clicked {
-  color: #555555;
+    color: #555555;
 }
+
 .login-form-1 .login-button.clicked:hover {
-  transform: none;
+    transform: none;
 }
+
 .login-form-1 .login-button.clicked.success {
-  color: #2ecc71;
+    color: #2ecc71;
 }
+
 .login-form-1 .login-button.clicked.error {
-  color: #e74c3c;
+    color: #e74c3c;
 }
+
+
 /*=== 6. Form Invalid ===*/
+
 label.form-invalid {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 5;
-  display: block;
-  margin-top: -25px;
-  padding: 7px 9px;
-  background: #777777;
-  color: #ffffff;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 11px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    display: block;
+    margin-top: -25px;
+    padding: 7px 9px;
+    background: #777777;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 11px;
 }
+
 label.form-invalid:after {
-  top: 100%;
-  right: 10px;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: transparent;
-  border-top-color: #777777;
-  border-width: 6px;
+    top: 100%;
+    right: 10px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-top-color: #777777;
+    border-width: 6px;
 }
+
+
 /*=== 7. Form - Main Message ===*/
+
 .login-form-main-message {
-  background: #ffffff;
-  color: #999999;
-  border-left: 3px solid transparent;
-  border-radius: 3px;
-  margin-bottom: 8px;
-  font-weight: bold;
-  height: 0;
-  padding: 0 20px 0 17px;
-  opacity: 0;
-  transition: all ease-in-out 200ms;
+    background: #ffffff;
+    color: #999999;
+    border-left: 3px solid transparent;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    height: 0;
+    padding: 0 20px 0 17px;
+    opacity: 0;
+    transition: all ease-in-out 200ms;
 }
+
 .login-form-main-message.show {
-  height: auto;
-  opacity: 1;
-  padding: 10px 20px 10px 17px;
+    height: auto;
+    opacity: 1;
+    padding: 10px 20px 10px 17px;
 }
+
 .login-form-main-message.success {
-  border-left-color: #2ecc71;
+    border-left-color: #2ecc71;
 }
+
 .login-form-main-message.error {
-  border-left-color: #e74c3c;
+    border-left-color: #e74c3c;
 }
 
-.nav-user{
-  line-height: 40px;
-  color: #fff;
-}
-.nav-user a{
-  color: #fff;
+.nav-user {
+    line-height: 40px;
+    color: #fff;
 }
 
-.nav-user>a:hover, .nav-user>a:focus,  .nav-user>a:active{
-  color: #fff;
-  background-color: transparent !important;
+.nav-user a {
+    color: #fff;
+}
+
+.nav-user>a:hover,
+.nav-user>a:focus,
+.nav-user>a:active {
+    color: #fff;
+    background-color: transparent !important;
 }
