@@ -20,8 +20,16 @@ from .forms import (
 def index(request):
 	return render(request, 'main/index.html')
 
-def show(request, id):
-    return render(request, "main/algo/view.html")
+def show(request, slug):
+
+	algo = Algo.objects.get(slug=slugify(slug))
+	# TODO: Add a check if algo is not created before
+	lang = request.GET.get("lang", "default")
+	data = {
+		'algo' : algo,
+		'lang' : lang
+	}
+	return render(request, "main/algo/view.html", data)
 
 def search(request, query):
 	query = query.replace("+", " ")
