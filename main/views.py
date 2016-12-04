@@ -55,7 +55,7 @@ def create_algo(request):
 	# 	t.save()
 	# 	tags.append(t);
 
-	lang = Tags.objects.get_or_create(slug=slugify(request.POST.lang))
+	lang = Tags.objects.get_or_create(slug=slugify(request.POST.get("lang", "default")))
 	lang.isLang = 1;
 	lang.name = request.POST.lang
 	lang.save()
