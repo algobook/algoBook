@@ -32,9 +32,9 @@ def show(request, slug):
 	return render(request, "main/algo/view.html", data)
 
 def search(request, query):
-	query = query.replace("+", " ")
+	q = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query)
-	return render(request, 'main/search.html', {'algos' : algos, 'query': query})
+	return render(request, 'main/search.html', {'algos' : algos, 'query': q})
 
 def api_search(request,query):
 	query = query.replace("+", " ")
