@@ -293,10 +293,13 @@ label.form-invalid:after {
 
 .nav-user{
   line-height: 40px;
-  margin-top: -5px;
-  height: 60px;
   color: #fff;
 }
-.nav-user:hover, .nav-user:focus{
+.nav-user a{
   color: #fff;
+}
+
+.nav-user>a:hover, .nav-user>a:focus,  .nav-user>a:active{
+  color: #fff;
+  background-color: transparent !important;
 }
