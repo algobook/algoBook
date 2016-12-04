@@ -4,10 +4,12 @@ from .models import (
 	Algo,
 	Badges,
 	Tags,
-	Profile
+	Profile,
+	Code
 	)
 
 admin.site.register(Algo)
 admin.site.register(Badges)
 admin.site.register(Tags)
 admin.site.register(Profile)
+admin.site.register(Code)
