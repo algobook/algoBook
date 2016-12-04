@@ -167,13 +167,21 @@ header {
     border-bottom: 1px solid black; 
   }
 
+.content{
+    margin-top:100px;
+}
 
-.content {
+@media(min-width: 748px)
+{
+  .content {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-80%);
+  }
 }
+
+
 
 p {
     /**color:white;*/
