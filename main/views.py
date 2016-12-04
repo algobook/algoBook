@@ -23,11 +23,13 @@ def index(request):
 def show(request, slug):
 
 	algo = Algo.objects.get(slug=slugify(slug))
+	codes = Code.objects.filter(algo=algo)
 	# TODO: Add a check if algo is not created before
 	lang = request.GET.get("lang", "default")
 	data = {
-		'algo' : algo,
-		'lang' : lang
+		'algo' 	: algo,
+		'lang' 	: lang,
+		'codes' : codes
 	}
 	return render(request, "main/algo/view.html", data)
 
@@ -85,9 +87,10 @@ def create_algo(request):
 @login_required
 def add_code_to_algo(request):
 
+	print(request.POST.get("lang"))
 	user = request.user
 	algo = Algo.objects.get(pk=request.POST.get("algo_id"))
-	lang = Tags.objects.filter(name=request.POST.get("lang")).filter(isLang=1);
+	lang = Tags.objects.get(slug=slugify(request.POST.get("lang")));
 
 	code = Code(
 			user=user,
@@ -98,6 +101,7 @@ def add_code_to_algo(request):
 			lang=lang
 		)
 	code.save();
+	return HttpResponseRedirect("/algo/" + algo.slug + "?lang=" + lang.name)
 
 @login_required
 def add_description_to_algo(request):

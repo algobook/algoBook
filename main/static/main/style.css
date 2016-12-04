@@ -68,11 +68,14 @@ header {
 }
 
 .resultbox {
-    border: 0.8px solid #020101;
+
     border-radius: 4px;
     padding: 15px 20px;
     background: #252525;
     margin-bottom: 20px;
+    -webkit-box-shadow: 0px 3px 5px -5px #494949;
+    -moz-box-shadow: 0px 3px 5px -5px #494949;
+    box-shadow: 0px 3px 5px -5px #494949;
 }
 
 .resultbox .meta {
@@ -167,8 +170,10 @@ header {
     border-bottom: 1px solid black; 
   }
 
-.content{
-    margin-top:100px;
+@media(max-width: 748px){
+  .content{
+      margin-top:100px;
+  }
 }
 
 @media(min-width: 748px)
@@ -370,4 +375,9 @@ label.form-invalid:after {
 .nav-user>a:active {
     color: #fff;
     background-color: transparent !important;
+}
+
+.nohover:hover{
+  text-decoration: none;
+  outline: none;
 }

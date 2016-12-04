@@ -31,10 +31,10 @@
 	</script>
 
 	<script>
-		$('#form').submit(function(e){
-			e.preventDefault();
+		function something(){
 			location = "../../"+($('input').val()).split(" ").join("+")
-		})
+			return false;
+		}
 	</script>
 	{% block footerextended %} {% endblock %}
 

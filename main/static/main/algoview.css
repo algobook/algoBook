@@ -27,8 +27,9 @@ pre{
   font-family: "Source Code Pro", monospace;
   font-size: 1em;
 }
-.hljs > *::selection {
-  background-color: #3e4451;
+
+::selection {
+  background-color: #414244;
 }
 
 .hljs-comment {
@@ -159,9 +160,7 @@ pre{
 .fav{
 	color:#F77669;
 }
-.codebox *::selection {
-  background-color: #3e4451;
-}
+
 
 .codebox:first-child{
 	margin-top: 3rem;
@@ -179,8 +178,9 @@ pre{
 .addans textarea{
 	background-color: transparent;
 	color:#fff;
-
-	height: 130px;
+	border:none;
+	min-height: 100px;
+	max-height: 150px;
 }
 .addans textarea:focus, .addans textarea:active{
 	box-shadow: none;
@@ -210,3 +210,4 @@ pre{
 	font-size: 1.5rem;
 	color: #fff;
 }
+

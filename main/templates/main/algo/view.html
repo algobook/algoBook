@@ -5,11 +5,13 @@
 
 {% include "main/navbar.html" %}
 
+	{{ algo.name.code }}
 <div class="container ">
 	<h1 class="algotitle" > {{ algo.name }} </h1>
 	<p class="lead algolang">
 		in <span class="label label-danger"> {{ lang }}</span>
 	</p>
+	{% for code in codes %}
 	<div class="row codebox">
 		<div class="col-sm-2 col-lg-1 col-xs-hidden meta">
 			<i class="glyphicon glyphicon-chevron-up"></i>
@@ -20,13 +22,7 @@
 		</div>
 		<div class="col-sm-10 col-lg-11">
 			<pre>
-				<code class="css">
-h1.title{
-	font-family: 'Source Code Pro', monospace;
-	color: #fff;
-	font-size: 80px;
-}
-				</code>
+				<code> {{ code.code }}</code>
 			</pre>
 		</div>
 		<div class="col-sm-3 col-lg-2 col-sm-offset-9 col-lg-offset-10">
@@ -35,15 +31,20 @@ h1.title{
 			</div>
 		</div>
 	</div>
+	{% endfor %}
 
 	<div class="row ">
 		<div class="container codebox addans">
-			<textarea class="form-control" v-model="data" placeholder="Submit your own version of algorithm"></textarea>
+			<form action="{% url 'add_code' %}" method="post">
+			{% csrf_token %}
+			<textarea class="form-control codeform" name="code" v-model="data" placeholder="Submit your code for this algorithm"></textarea>
+			<input type="text" name="lang" hidden value="{{ lang }}" id="lang">
+			<input type="text" name="algo_id" hidden value="{{ algo.id }}" id="algoId">
 			<button class="btn btn-danger pull-right" style="margin-top:20px;">Post Your Algorithm</button>
-
+			</form>
 			<div class="container">
 				<pre>
-					<code class="css">{{ data }}</code>
+					<code class="css">(( data ))</code>
 				</pre>
 			</div>
 
