@@ -105,10 +105,16 @@ def add_code_to_algo(request):
 
 @login_required
 def add_description_to_algo(request):
-	slug = request.POST.slug
-	desc = request.POST.description
+	print(request.GET)
 
-	algo = Algo.objects.get( slug=slugify(slug) )
+	algo_id = request.GET.get("algo_id")
+	desc = request.GET.get("desc")
+
+	algo = Algo.objects.get( pk=algo_id )
+	algo.description = desc
+	algo.save()
+
+	return JsonResponse({ 'response' : 1})
 
 #TODO: To be implemented later
 @login_required

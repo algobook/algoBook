@@ -13,6 +13,7 @@ urlpatterns = [
 
     url(r'^algos/create', views.create_algo),
     url(r'^algos/addcode', views.add_code_to_algo, name="add_code"),
+    url(r'^algos/adddesc', views.add_description_to_algo , name="add_desc"),
     url(r'^algos/search/(?P<query>[\w+-]+)/$', views.api_search, name = "api_search"),
 
     url(r'^(?P<query>[\w+-]+)/$', views.search, name = "search_algo"),

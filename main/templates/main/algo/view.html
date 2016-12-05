@@ -5,9 +5,16 @@
 
 {% include "main/navbar.html" %}
 
-	{{ algo.name.code }}
 <div class="container ">
 	<h1 class="algotitle" > {{ algo.name }} </h1>
+	
+	<p class="description text-muted" id="description" contenteditable="true"> 
+		{% if not algo.description %}
+			Add Description 
+		{% else %}
+			{{ algo.description  }}
+		{% endif %}
+	</p>
 	<p class="lead algolang">
 		in <span class="label label-danger"> {{ lang }}</span>
 	</p>
@@ -39,7 +46,7 @@
 			{% csrf_token %}
 			<textarea class="form-control codeform" name="code" v-model="data" placeholder="Submit your code for this algorithm"></textarea>
 			<input type="text" name="lang" hidden value="{{ lang }}" id="lang">
-			<input type="text" name="algo_id" hidden value="{{ algo.id }}" id="algoId">
+			<input type="text" id="algo_id" name="algo_id" hidden value="{{ algo.id }}" id="algoId">
 			<button class="btn btn-danger pull-right" style="margin-top:20px;">Post Your Algorithm</button>
 			</form>
 			<div class="container">
@@ -97,5 +104,11 @@
 	<!-- TODO: second stage, change languages -->
 	<script type="text/javascript">
 		$('#selectlang').popover();
+
+		$('#description').focusout(function(){
+			algo_id = $('#algo_id').val()
+			description = $('#description').html()
+			$.get("{% url 'add_desc' %}?algo_id=" + algo_id + "&desc=" + description)
+		})
 	</script>
 {% endblock %}
