@@ -167,7 +167,7 @@ header {
 
   .searchbox-mobile:hover, .searchbox-mobile:focus{
     outline: none;
-    border-bottom: 1px solid black; 
+    border-bottom: 1px solid black;
   }
 
 @media(max-width: 748px){

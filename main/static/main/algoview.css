@@ -13,9 +13,9 @@ pre{
 /*
  * highlightjs-material-dark-theme
  * Material Dark theme for Highlight.js
- * Based off of https://github.com/equinusocio/material-theme 
+ * Based off of https://github.com/equinusocio/material-theme
  * For use with Highlight.js, https://github.com/isagalaev/highlight.js
- */ 
+ */
 
 
 .hljs {
@@ -210,4 +210,3 @@ pre{
 	font-size: 1.5rem;
 	color: #fff;
 }
-
