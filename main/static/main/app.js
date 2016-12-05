@@ -15,9 +15,9 @@ var app = new Vue({
 		notfound: 0
 	},
 	methods: {
-		
+
 		onload: function(){
-			
+
 		},
 
 		createAlgo: function(){
