@@ -80,7 +80,7 @@ class Code(models.Model):
 class Votes(models.Model):
 	user = models.ForeignKey(User, on_delete = models.CASCADE)
 	code = models.ManyToManyField(Code)
-	vote = models.BooleanField(deafult = 0)
+	vote = models.BooleanField(default = 0)
 
 
 # Example Query I want to generate
