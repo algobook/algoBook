@@ -27,7 +27,7 @@
                         </ul>
                     </li>
                     {% endif %} {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
-                    <a href='{% url "auth_login" %}?next={{ request.get_full_path }}' class="btn btn-primary btn-md" style=" border-radius: 0px; margin-top:20px; margin-right:30px;">Login</a> {% endif %}
+                    <a href='{% url "auth_login" %}?next={{ request.get_full_path }}' class="btn btn-default btn-md" style=" border-radius: 3px; margin-top:20px; margin-right:30px;">Login</a> {% endif %}
                 </ul>
             </div>
         </div>
