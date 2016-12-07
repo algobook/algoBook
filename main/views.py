@@ -34,12 +34,12 @@ def show(request, slug):
 	return render(request, "main/algo/view.html", data)
 
 def search(request, query):
-	q = " ".join( list(query.split("+")))
+	query = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query)
 	return render(request, 'main/search.html', {'algos' : algos, 'query': q})
 
 def api_search(request,query):
-	query = query.replace("+", " ")
+	query = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query).values("name", "slug", "description")
 	data = list(algos)
 	if not len(data):
@@ -105,7 +105,6 @@ def add_code_to_algo(request):
 
 @login_required
 def add_description_to_algo(request):
-	print(request.GET)
 
 	algo_id = request.GET.get("algo_id")
 	desc = request.GET.get("desc")
@@ -115,6 +114,20 @@ def add_description_to_algo(request):
 	algo.save()
 
 	return JsonResponse({ 'response' : 1})
+
+@login_required
+def add_vote_to_code(request):
+
+	code = Code.objects.get(pk=request.POST.get("code_id"))
+	user = request.user
+	vote = request.POST.get("vote")
+
+	check = Votes.objects.filter(user=user).filter(code=code)
+
+	if not check:
+		v = Vote(user=user, code=code, vote=vote)
+		v.save()
+		return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
 
 #TODO: To be implemented later
 @login_required
