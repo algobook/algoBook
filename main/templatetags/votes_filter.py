@@ -17,6 +17,8 @@ def count( code ):
 
 @register.simple_tag(takes_context=True)
 def isUp( context, code ):
+	if not context['request'].user.is_authenticated():
+		return '0'
 	vote = Votes.objects.filter(code=code).filter( user=context['request'].user ).values("vote")
 	if vote:
 		if vote[0].get("vote") == 1:
@@ -28,6 +30,8 @@ def isUp( context, code ):
 
 @register.simple_tag(takes_context=True)
 def isDown( context, code ):
+	if not context['request'].user.is_authenticated():
+		return '0'
 	vote = Votes.objects.filter(code=code).filter( user=context['request'].user ).values("vote")
 	if vote:
 		if vote[0].get("vote") == -1:
