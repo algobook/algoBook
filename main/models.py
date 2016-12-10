@@ -67,8 +67,6 @@ class Code(models.Model):
 	user = models.ForeignKey(User)
 	algo = models.ForeignKey(Algo, on_delete = models.CASCADE)
 	code = models.TextField(max_length = 20000, null = False)
-	upvotes = models.PositiveIntegerField(default = 0)
-	downvotes = models.PositiveIntegerField(default = 0)
 	lang = models.ForeignKey(Tags)
 
 	def __unicode__(self):
@@ -79,8 +77,13 @@ class Code(models.Model):
 
 class Votes(models.Model):
 	user = models.ForeignKey(User, on_delete = models.CASCADE)
-	code = models.ManyToManyField(Code)
-	vote = models.BooleanField(default = 0)
+	code = models.ManyToManyField(Code, related_name="code_votes")
+	vote = models.IntegerField(default = 0)
+	def __unicode__(self):
+		return self.user.username
+
+	def __str__(self):
+		return self.user.username
 
 
 # Example Query I want to generate

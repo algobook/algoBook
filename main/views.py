@@ -24,6 +24,7 @@ def show(request, slug):
 
 	algo = Algo.objects.get(slug=slugify(slug))
 	codes = Code.objects.filter(algo=algo)
+
 	# TODO: Add a check if algo is not created before
 	lang = request.GET.get("lang", "default")
 	data = {
@@ -36,7 +37,7 @@ def show(request, slug):
 def search(request, query):
 	query = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query)
-	return render(request, 'main/search.html', {'algos' : algos, 'query': q})
+	return render(request, 'main/search.html', {'algos' : algos, 'query': query})
 
 def api_search(request,query):
 	query = " ".join( list(query.split("+")))
@@ -96,8 +97,6 @@ def add_code_to_algo(request):
 			user=user,
 			algo=algo,
 			code=request.POST.get("code"),
-			upvotes=0,
-			downvotes=0,
 			lang=lang
 		)
 	code.save();
@@ -128,6 +127,7 @@ def add_vote_to_code(request):
 		v = Vote(user=user, code=code, vote=vote)
 		v.save()
 		return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
+
 
 #TODO: To be implemented later
 @login_required
