@@ -8,7 +8,8 @@ import urllib
 from .models import  (
 	Algo,
 	Code,
-	Tags
+	Tags,
+	Votes
 )
 
 from .forms import (
@@ -115,18 +116,25 @@ def add_description_to_algo(request):
 	return JsonResponse({ 'response' : 1})
 
 @login_required
-def add_vote_to_code(request):
+def add_vote_to_code(request, code_id):
 
-	code = Code.objects.get(pk=request.POST.get("code_id"))
+	code = Code.objects.get(pk=code_id)
 	user = request.user
-	vote = request.POST.get("vote")
+	vote = request.GET.get("add")
 
 	check = Votes.objects.filter(user=user).filter(code=code)
 
 	if not check:
-		v = Vote(user=user, code=code, vote=vote)
+		v = Votes(user=user, code=code, vote=vote)
 		v.save()
-		return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
+	else:
+		check = check[0]
+		if int(check.vote) == int(vote):
+			check.delete()
+		else:
+			check.vote = vote
+			check.save()
+	return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
 
 
 #TODO: To be implemented later

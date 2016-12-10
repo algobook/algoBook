@@ -77,7 +77,7 @@ class Code(models.Model):
 
 class Votes(models.Model):
 	user = models.ForeignKey(User, on_delete = models.CASCADE)
-	code = models.ManyToManyField(Code, related_name="code_votes")
+	code = models.ForeignKey(Code, related_name="code_votes")
 	vote = models.IntegerField(default = 0)
 	def __unicode__(self):
 		return self.user.username

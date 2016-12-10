@@ -11,10 +11,17 @@
     {% for code in codes %}
     <div class="row codebox">
         <div class="col-sm-2 col-lg-1 col-xs-hidden meta">
-            <i class="glyphicon glyphicon-chevron-up"></i>
-            <p class="text-center score"> {% isUp code %}</p>
-            <i class="glyphicon glyphicon-chevron-down"></i>
-            <!-- #TODO: Add favourites in second stage -->
+            <a  href="/algos/codes/{{ code.id }}/votes?add=1" class="vote" 
+                v-bind:class="{ 'disabled' : {% isUp code %} }">
+                    <i class="glyphicon glyphicon-chevron-up"></i>
+            </a>
+            
+            <p class="text-center score"> {{ code|count }}</p>
+            
+            <a href="/algos/codes/{{ code.id }}/votes?add=-1" class="vote" 
+                v-bind:class="{ 'disabled' : {% isDown code %} }">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </a>            <!-- #TODO: Add favourites in second stage -->
             <!-- <i class="glyphicon glyphicon-heart fav"></i> -->
         </div>
         <div class="col-sm-10 col-lg-11">
