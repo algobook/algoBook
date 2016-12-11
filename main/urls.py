@@ -20,5 +20,6 @@ urlpatterns = [
 
     url(r'codes/(?P<code_id>[\w+-]+)/delete', views.delete_code),
 
+    url(r'user/(?P<name>[\w+-]+)/$', views.user_profile),
     url(r'^(?P<query>[\w+-]+)/$', views.search, name = "search_algo"),
 ]

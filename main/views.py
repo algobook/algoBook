@@ -167,6 +167,10 @@ def delete_code( request, code_id ):
 
 	return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
 
+@login_required
+def user_profile(request, name):
+	return render(request, 'main/user_profile.html')
+
 #TODO: To be implemented later
 @login_required
 @transaction.atomic
