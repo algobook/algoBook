@@ -8,6 +8,7 @@
         in <span class="label label-danger"> {{ lang }}</span>
     </p>
     {% load votes_filter %}
+    {% load codes_filter %}
     {% for code in codes %}
     <div class="row codebox">
         <div class="col-sm-2 col-lg-1 col-xs-hidden meta">
@@ -29,9 +30,19 @@
 				<code> {{ code.code }}</code>
 			</pre>
         </div>
-        <div class="col-sm-3 col-lg-2 col-sm-offset-9 col-lg-offset-10">
-            <div class="userbox">
-                <a href="/user/{{ code.user.username }}"> {{ code.user.username }}</a>
+        <div class="col-sm-12">
+            <div class="col-sm-6 col-lg-4 col-sm-offset-3 col-lg-offset-6">
+                {% showDelete code as c%}
+                {% if c %}
+                    <div class="pull-right">
+                        <a href="codes/{{code.id}}/delete" class="controls"><i class="glyphicon glyphicon-trash"></i></a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-3 col-lg-2">
+                <div class="userbox">
+                    <a href="/user/{{ code.user.username }}"> {{ code.user.username }}</a>
+                </div>
             </div>
         </div>
     </div>

@@ -136,6 +136,15 @@ def add_vote_to_code(request, code_id):
 			check.save()
 	return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
 
+@login_required
+def delete_code( request, code_id ):
+
+	code = Code.objects.get(pk=code_id)
+	
+	if code.user == request.user:
+		code.delete()
+
+	return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
 
 #TODO: To be implemented later
 @login_required

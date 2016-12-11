@@ -223,3 +223,8 @@ a.disabled{
 a.vote:hover{
 	color: rgb(73, 123, 166);
 }
+
+.controls {
+	font-size: 1.5rem;
+	line-height: 3.5rem;
+}

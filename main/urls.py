@@ -18,5 +18,7 @@ urlpatterns = [
 
     url(r'^algos/codes/(?P<code_id>[\w+-]+)/votes', views.add_vote_to_code),
 
+    url(r'codes/(?P<code_id>[\w+-]+)/delete', views.delete_code),
+
     url(r'^(?P<query>[\w+-]+)/$', views.search, name = "search_algo"),
 ]
