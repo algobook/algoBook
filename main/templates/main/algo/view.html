@@ -2,7 +2,7 @@
 <div class="container ">
     <h1 class="algotitle"> {{ algo.name }} </h1>
     <p class="description text-muted" id="description" contenteditable="true">
-        {% if not algo.description %} Add Description {% else %} {{ algo.description }} {% endif %}
+        {% if not algo.description %} <span id="deleteit"> Add Description </span> {% else %} {{ algo.description }} {% endif %}
     </p>
     <p class="lead algolang">
         in <span class="label label-danger"> {{ lang }}</span>
@@ -98,8 +98,14 @@ $('#selectlang').popover();
 
 $('#description').focusout(function() {
     algo_id = $('#algo_id').val()
+    if( val == '')
+        return 0
     description = $('#description').html()
     $.get("{% url 'add_desc' %}?algo_id=" + algo_id + "&desc=" + description)
+})
+
+$('#deleteit').click(function(){
+    $(this).html('')
 })
 </script>
 {% endblock %}

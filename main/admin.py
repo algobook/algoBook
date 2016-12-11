@@ -5,7 +5,8 @@ from .models import (
 	Badges,
 	Tags,
 	Profile,
-	Code
+	Code,
+	Votes
 	)
 
 admin.site.register(Algo)
@@ -13,3 +14,4 @@ admin.site.register(Badges)
 admin.site.register(Tags)
 admin.site.register(Profile)
 admin.site.register(Code)
+admin.site.register(Votes)
