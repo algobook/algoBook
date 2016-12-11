@@ -20,7 +20,13 @@
 				<div class="resultbox" v-show="keepit">
 					<a class="stitle" href="/algo/{{algo.slug}}"> {{ algo.name }} </a>
 					<p class="meta"> {{ algo.description }}</p>
-					<p class="meta"> contributors: abc, xyz</p>
+					<p class="meta"> contributors:
+						{% for each, code in contributors.items %}
+							{% if each == algo.id %}
+								{{ code }}
+							{% endif %}
+						{% endfor %}
+					</p>
 
 				</div>
 				{% endfor %}
@@ -33,12 +39,11 @@
 					<div class="meta-bar"></div>
 					<div class="meta-bar"></div>
 				</div>
-
-				<div class="results" v-show="results.length">
-					<div class="resultbox" v-for="algo in results">
+				<div class="results" v-show="showResults">
+					<div class="resultbox" v-for="algo in results.algos">
 						<a class="stitle" :href="urltoalgo(algo.slug)"> (( algo.name )) </a>
 						<p class="meta"> (( algo.description ))</p>
-						<p class="meta"> contributors: abc, xyz</p>
+						<p class="meta"> contributors: (( isThere(algo.contribs, "none") ))</p>
 
 					</div>
 

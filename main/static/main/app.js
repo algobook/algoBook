@@ -12,12 +12,20 @@ var app = new Vue({
 		results: [],
 		createError: false,
 		keepit: 1,
-		notfound: 0
+		notfound: 0,
+		showResults: 0
 	},
 	methods: {
 
 		onload: function(){
 
+		},
+
+		isThere: function(val){
+			if(val == "")
+				return "none"
+			else
+				return val
 		},
 
 		createAlgo: function(){
@@ -51,9 +59,11 @@ var app = new Vue({
 			this.searching  = 1
 			this.notfound = 0
 			this.results = []
+			this.showResults = 1
 			var that = this
 			$.get('../algos/search/'+ this.query.replace(" ", "+") , function(response){
 				that.results = response.results
+				that.showResults = 1
 				that.keepit = false
 				that.searching= 0
 			}).fail(function(){

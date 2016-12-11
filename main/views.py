@@ -38,15 +38,36 @@ def show(request, slug):
 def search(request, query):
 	query = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query)
-	return render(request, 'main/search.html', {'algos' : algos, 'query': query})
+	contributors = {}
+	for algo in algos:
+		users = list ( set( code.user.username for code in Code.objects.filter(algo=algo) ) )
+		users = ", ".join(users)
+		contributors[algo.id] = users
+	return render(request, 'main/search.html', {'algos' : algos, 'query': query, 'contributors': contributors})
 
 def api_search(request,query):
 	query = " ".join( list(query.split("+")))
-	algos = Algo.objects.filter(name__icontains = query).values("name", "slug", "description")
-	data = list(algos)
-	if not len(data):
+	algos = Algo.objects.filter(name__icontains = query)
+
+	if not len(algos):
 		return HttpResponseNotFound("Not Found")
-	return JsonResponse({ 'results': data })
+
+	contributors = {}
+	data = {}
+	for algo in list(algos):
+		users = list ( set( code.user.username for code in Code.objects.filter(algo=algo)))
+		users = ", ".join(users)
+		data[algo.id] = {
+				'id' : algo.id,
+				'name' : algo.name,
+				'description' : algo.description,
+				'slug': algo.slug,
+				'contribs' : users
+			}
+	
+	results = { 'algos' : data}
+
+	return JsonResponse({ 'results': results })
 
 	# TODO: tag system in second stage
 	# for tag in query.split("+"):
