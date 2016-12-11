@@ -38,7 +38,20 @@ def show(request, slug):
 def search(request, query):
 	query = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query)
-	return render(request, 'main/search.html', {'algos' : algos, 'query': query})
+	contributors={}
+	for each in algos:
+		a=set()
+		b=[]
+		c=""
+		codes = Code.objects.filter(algo=each)
+		for each1 in codes:
+			a.add(each1.user.username)
+		for each1 in a:
+			b.append(each1)
+		for each1 in b[:3]:
+			c=c+each1+" "
+		contributors[each.id]=c
+	return render(request, 'main/search.html', {'algos' : algos, 'query': query, 'contributors': contributors})
 
 def api_search(request,query):
 	query = " ".join( list(query.split("+")))
