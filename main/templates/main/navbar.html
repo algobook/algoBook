@@ -1,11 +1,12 @@
-<header class="">
+ <header class="">
     <div class="container-fluid">
         {% block content %}
 
         <div class="row">
         	<div class="visible-xs">
-	            <form id="form" action="./search" class="form" method="get">
-	                <input type="text" class="form-control searchbox searchbox-mobile" v-on:keyup="getData()" placeholder="Search..." v-model="query">
+                <span style="display: none" id="squery">{{query}}</span>
+	            <form class="form-query" action="./search" class="form" method="get">
+	                <input type="text" v-model="query" class="form-control searchbox searchbox-mobile" v-on:keyup="getData({{ query }})" placeholder="Search..." v-model="query">
 	            </form>
         	</div>
         </div>
@@ -14,8 +15,8 @@
             <a href="../../" class="nohover"> <h2 class="title"> algoBook  </h2></a>
         </div>
         <div class="col-sm-6 hidden-xs">
-            <form id="form" action="./search" onsubmit="return something()" method="get">
-                <input type="text" class="form-control searchbox searchbox-small" v-on:keyup="getData()" v-model="query">
+            <form class="form-query" action="./search" method="get">
+                <input type="text" query="{{query}}" v-model="query" id="searchbox" class="form-control searchbox searchbox-small" v-on:keyup="getData({{query}})">
             </form>
         </div>
 

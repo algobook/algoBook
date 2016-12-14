@@ -1,12 +1,10 @@
+
+
 var app = new Vue({
 	el: '#app',
 	delimiters: ['((', '))'],
 	data: {
-		query: function(){
-			path = window.location.pathname.split("/")
-			path = path[path.length-2].split("+").join(" ")
-			return path
-		}() ,
+		query: $("#squery").html(),
 		data: "",
 		searching: 0,
 		results: [],
@@ -27,7 +25,7 @@ var app = new Vue({
 			else
 				return val
 		},
-
+		
 		createAlgo: function(){
 			this.createError = false;
 
@@ -55,13 +53,13 @@ var app = new Vue({
 
 		getData: function(){
 			// TODO: set csrf token here
-
+			query = getSearchQuery( this.query )
 			this.searching  = 1
 			this.notfound = 0
 			this.results = []
 			this.showResults = 1
 			var that = this
-			$.get('../algos/search/'+ this.query.replace(" ", "+") , function(response){
+			$.get('../algos/search/'+ query , function(response){
 				that.results = response.results
 				that.showResults = 1
 				that.keepit = false

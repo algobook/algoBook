@@ -35,6 +35,12 @@ def show(request, slug):
 	}
 	return render(request, "main/algo/view.html", data)
 
+def gen_search_query(request,q):
+	if request.GET.get("lang"):
+		return q + " in " + request.GET.get("lang")
+	else:
+		return q;
+
 def search(request, query):
 	query = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query)
@@ -43,7 +49,13 @@ def search(request, query):
 		users = list ( set( code.user.username for code in Code.objects.filter(algo=algo) ) )
 		users = ", ".join(users)
 		contributors[algo.id] = users
-	return render(request, 'main/search.html', {'algos' : algos, 'query': query, 'contributors': contributors})
+	return render(request, 'main/search.html', 
+				{ 
+					'algos' : algos,
+					'query': gen_search_query(request, query), 
+					'contributors': contributors
+				}
+			)
 
 def api_search(request,query):
 	query = " ".join( list(query.split("+")))

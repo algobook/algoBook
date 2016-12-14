@@ -31,10 +31,21 @@
 	</script>
 
 	<script>
-		function something(){
-			location = "../../"+($('input').val()).split(" ").join("+")
-			return false;
-		}
+	    getSearchQuery = function(query){
+	        query = query.replace("/ /g","+")
+	        var pos = query.lastIndexOf(" in ")
+	        if( pos != -1)
+	        {
+	            var sub = query.substr(pos+4)
+	            return query.substr(0,pos) + "?lang=" + sub;
+	        }
+	        else
+	            return query
+	    };
+	    $('.form-query').submit(function(e) {
+	        e.preventDefault();
+	        location = '../'+getSearchQuery($("input").val())
+	    })
 	</script>
 	{% block footerextended %} {% endblock %}
 

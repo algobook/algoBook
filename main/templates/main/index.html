@@ -47,9 +47,20 @@
     hljs.initHighlightingOnLoad();
     </script>
     <script>
+    getSearchQuery = function(query){
+        query = query.replace("/ /g","+")
+        var pos = query.lastIndexOf(" in ")
+        if( pos != -1)
+        {
+            var sub = query.substr(pos+4)
+            return query.substr(0,pos) + "?lang=" + sub;
+        }
+        else
+            return query
+    };
     $('#form').submit(function(e) {
         e.preventDefault();
-        location = ($('input').val()).split(" ").join("+")
+        location = getSearchQuery($("input").val())
     })
     </script>
 </body>
