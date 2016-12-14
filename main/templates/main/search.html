@@ -18,7 +18,7 @@
 
 				{% for algo in algos %}
 				<div class="resultbox" v-show="keepit">
-					<a class="stitle" href="/algo/{{algo.slug}}"> {{ algo.name }} </a>
+					<a class="stitle" href="/algo/{{algo.slug}}?lang={{request.GET.lang}}"> {{ algo.name }} </a>
 					<p class="meta"> {{ algo.description }}</p>
 					<p class="meta"> contributors:
 						{% for each, code in contributors.items %}

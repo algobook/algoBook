@@ -24,15 +24,18 @@ def index(request):
 def show(request, slug):
 
 	algo = Algo.objects.get(slug=slugify(slug))
-	codes = Code.objects.filter(algo=algo)
+	l = request.GET.get("lang", "default")
+	if l == "":
+		l = "default"
+	lang = Tags.objects.filter( slug = slugify(l))
+	codes = Code.objects.filter(algo=algo, lang=lang)
 
 	# TODO: Add a check if algo is not created before
-	lang = request.GET.get("lang", "default")
 	data = {
 		'algo' 	: algo,
-		'lang' 	: lang,
+		'lang' 	: l,
 		'codes' : codes,
-		'query' : algo.name + " in " + lang
+		'query' : algo.name + " in " + l
 	}
 	return render(request, "main/algo/view.html", data)
 

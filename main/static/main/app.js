@@ -95,7 +95,7 @@ var app = new Vue({
 
 		},
 		urltoalgo: function(uri){
-			return "../algo/" + uri;
+			return "../algo/" + uri + "?lang=" + this.getLang(this.query);
 		}
 	}
 })
