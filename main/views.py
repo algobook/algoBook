@@ -31,7 +31,8 @@ def show(request, slug):
 	data = {
 		'algo' 	: algo,
 		'lang' 	: lang,
-		'codes' : codes
+		'codes' : codes,
+		'query' : algo.name + " in " + lang
 	}
 	return render(request, "main/algo/view.html", data)
 
@@ -122,7 +123,6 @@ def create_algo(request):
 @login_required
 def add_code_to_algo(request):
 
-	print(request.POST.get("lang"))
 	user = request.user
 	algo = Algo.objects.get(pk=request.POST.get("algo_id"))
 	lang = Tags.objects.get(slug=slugify(request.POST.get("lang")));

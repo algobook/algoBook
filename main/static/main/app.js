@@ -4,7 +4,9 @@ var app = new Vue({
 	el: '#app',
 	delimiters: ['((', '))'],
 	data: {
-		query: $("#squery").html(),
+		query: function(){
+			return $('#squery').html()
+		}(),
 		data: "",
 		searching: 0,
 		results: [],
@@ -15,6 +17,22 @@ var app = new Vue({
 	},
 	methods: {
 
+		getLang : function(query){
+	        query = query.replace("/ /g","+")
+	        var pos = query.lastIndexOf(" in ")
+	        if( pos != -1)
+	            return query.substr(pos+4)
+	        else
+	            return ""
+	    },
+	    getQuery : function(query){
+	        query = query.replace("/ /g","+")
+	        var pos = query.lastIndexOf(" in ")
+	        if( pos != -1)
+            	return query.substr(0,pos)
+	        else
+	            return query
+	    },
 		onload: function(){
 
 		},
@@ -28,31 +46,38 @@ var app = new Vue({
 		
 		createAlgo: function(){
 			this.createError = false;
-
 			if (!this.query.length)
 			{
 				this.createError = true;
 				return 0;
 			}
 
-			var form = $("form")[0]
-			form.method = "GET"
-			form.action = "../../algos/create"
+			location = "../../algos/create?lang=" + this.getLang(this.query) + "&name=" + this.getQuery(this.query)
 
-			var input = $("input")[0]
-			input.type="text"
-			input.name="name"
-			input.value = this.query
+			// var form = $("form")[0]
+			// form.method = "GET"
+			// form.action = "../../algos/create"
 
-			csrf = $("#csrf").children()[0]
+			// var input = $("input")[0]
+			// input.type="text"
+			// input.name="lang"
+			// input.value = this.getLang(this.query)
 
-			form.appendChild(input)
+			// var input = $("input")[0]
+			// input.type="text"
+			// input.name="name"
+			// input.value = 
 
-			form.submit();
+			// csrf = $("#csrf").children()[0]
+
+			// form.appendChild(input)
+
+			// form.submit();
 		},
 
 		getData: function(){
 			// TODO: set csrf token here
+			// alert(this.query)
 			query = getSearchQuery( this.query )
 			this.searching  = 1
 			this.notfound = 0

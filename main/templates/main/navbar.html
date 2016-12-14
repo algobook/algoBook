@@ -6,7 +6,7 @@
         	<div class="visible-xs">
                 <span style="display: none" id="squery">{{query}}</span>
 	            <form class="form-query" action="./search" class="form" method="get">
-	                <input type="text" v-model="query" class="form-control searchbox searchbox-mobile" v-on:keyup="getData({{ query }})" placeholder="Search..." v-model="query">
+	                <input type="text" v-model="query" class="form-control searchbox searchbox-mobile" v-on:keyup="getData()" placeholder="Search..." v-model="query">
 	            </form>
         	</div>
         </div>
@@ -16,7 +16,7 @@
         </div>
         <div class="col-sm-6 hidden-xs">
             <form class="form-query" action="./search" method="get">
-                <input type="text" query="{{query}}" v-model="query" id="searchbox" class="form-control searchbox searchbox-small" v-on:keyup="getData({{query}})">
+                <input type="text" query="{{query}}" v-model="query" id="searchbox" class="form-control searchbox searchbox-small" v-on:keyup="getData()">
             </form>
         </div>
 
