@@ -48,8 +48,8 @@
     </script>
     <script>
     getSearchQuery = function(query){
-        query = query.replace("/ /g","+")
         var pos = query.lastIndexOf(" in ")
+        query = query.replace(/ /g,"+")
         if( pos != -1)
         {
             var sub = query.substr(pos+4)

@@ -128,7 +128,9 @@ def add_code_to_algo(request):
 
 	user = request.user
 	algo = Algo.objects.get(pk=request.POST.get("algo_id"))
-	lang = Tags.objects.get(slug=slugify(request.POST.get("lang")));
+	lang,created = Tags.objects.get_or_create(slug=slugify(request.POST.get("lang")));
+	lang.name = request.POST.get("lang")
+	lang.save()
 
 	code = Code(
 			user=user,
