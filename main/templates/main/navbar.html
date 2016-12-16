@@ -28,7 +28,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ request.user }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="text-muted"> <em> My Profile (coming soon) </em> </a>
+                            <a href="../user/{{user.username}}">My Profile</a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{% url 'auth_logout' %}?next={{ request.get_full_path }}"> Logout </a></li>

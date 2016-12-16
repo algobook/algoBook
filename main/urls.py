@@ -14,12 +14,12 @@ urlpatterns = [
     url(r'^algos/create', views.create_algo),
     url(r'^algos/addcode', views.add_code_to_algo, name="add_code"),
     url(r'^algos/adddesc', views.add_description_to_algo , name="add_desc"),
-    url(r'^algos/search/(?P<query>[\w+-]+)/$', views.api_search, name = "api_search"),
+    url(r'^algos/search/(?P<query>.*)/$', views.api_search, name = "api_search"),
 
     url(r'^algos/codes/(?P<code_id>[\w+-]+)/votes', views.add_vote_to_code),
 
     url(r'codes/(?P<code_id>[\w+-]+)/delete', views.delete_code),
 
     url(r'user/(?P<name>[\w+-]+)/$', views.user_profile),
-    url(r'^(?P<query>[\w+-]+)/$', views.search, name = "search_algo"),
+    url(r'^(?P<query>.*)/$', views.search, name = "search_algo"),
 ]

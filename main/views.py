@@ -25,10 +25,16 @@ def show(request, slug):
 
 	algo = Algo.objects.get(slug=slugify(slug))
 	l = request.GET.get("lang", "default")
+
 	if l == "":
 		l = "default"
+	
 	lang = Tags.objects.filter( slug = slugify(l))
-	codes = Code.objects.filter(algo=algo, lang=lang)
+	
+	if l != "default":
+		codes = Code.objects.filter(algo=algo, lang=lang)
+	else:
+		codes = Code.objects.filter(algo=algo)
 
 	# TODO: Add a check if algo is not created before
 	data = {
@@ -186,7 +192,8 @@ def delete_code( request, code_id ):
 
 @login_required
 def user_profile(request, name):
-	return render(request, 'main/user_profile.html')
+	codes = Code.objects.filter(user= request.user)
+	return render(request, 'main/user_profile.html', { 'codes': codes })
 
 #TODO: To be implemented later
 @login_required

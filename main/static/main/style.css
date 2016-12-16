@@ -388,3 +388,24 @@ label.form-invalid:after {
   text-decoration: none;
   outline: none;
 }
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    -webkit-transition: all 0.3s linear !important; 
+
+}
+::-moz-placeholder { /* Firefox 19+ */
+    -webkit-transition: all 0.3s linear !important; 
+
+}
+:-ms-input-placeholder { /* IE 10+ */
+    -webkit-transition: all 0.3s linear !important; 
+
+}
+:-moz-placeholder { /* Firefox 18- */
+    -webkit-transition: all 0.3s linear !important; 
+}
+
+::placeholder{
+    color: 
+}

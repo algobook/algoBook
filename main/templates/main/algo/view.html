@@ -10,7 +10,7 @@
     {% load votes_filter %}
     {% load codes_filter %}
     {% for code in codes %}
-    <div class="row codebox">
+    <div class="row codebox" id="code-{{code.id}}">
         <div class="col-sm-2 col-lg-1 col-xs-hidden meta">
             <a  href="/algos/codes/{{ code.id }}/votes?add=1" class="vote" 
                 v-bind:class="{ 'disabled' : {% isUp code %} }">

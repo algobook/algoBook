@@ -20,7 +20,9 @@
                         <button href="#" class="btn btn-default pull-right btn-md" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=" border-radius: 2px; margin-top:20px; margin-right:30px; outline: 0"> Welcome back {{ request.user }}! <span class="caret"></span></button>
                         <ul class="dropdown-menu" style="margin-right:30px;">
                             <li>
-                                <a class="text-muted"> <em> My Profile (coming soon) </em> </a>
+                                <a class="text-muted" href="../user/{{user.username}}">
+                                    Profile
+                                </a>
                             </li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{% url 'auth_logout' %}?next={{ request.get_full_path }}"> Logout </a></li>
@@ -62,6 +64,19 @@
         e.preventDefault();
         location = getSearchQuery($("input").val())
     })
+
+    var i = 0;
+    strings = [
+        'Start with "Binary Search in C"',  
+        "Use 'in' keyword to specify language",
+        "Learn and Share!"
+    ]
+    function changePlaceholder(){
+        $('input').attr("placeholder", strings[i])
+        i++
+    }
+
+    setInterval(changePlaceholder, 3000)
     </script>
 </body>
 
