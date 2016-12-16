@@ -98,7 +98,7 @@ $('#selectlang').popover();
 
 $('#description').focusout(function() {
     algo_id = $('#algo_id').val()
-    if( val == '')
+    if( $(this).html() == '')
         return 0
     description = $('#description').html()
     $.get("{% url 'add_desc' %}?algo_id=" + algo_id + "&desc=" + description)
