@@ -9,7 +9,8 @@ from .models import  (
 	Algo,
 	Code,
 	Tags,
-	Votes
+	Votes,
+	User
 )
 
 from .forms import (
@@ -192,7 +193,8 @@ def delete_code( request, code_id ):
 
 @login_required
 def user_profile(request, name):
-	codes = Code.objects.filter(user= request.user)
+	user = User.objects.filter(username=name)
+	codes = Code.objects.filter(user=user)
 	return render(request, 'main/user_profile.html', { 'codes': codes })
 
 #TODO: To be implemented later
