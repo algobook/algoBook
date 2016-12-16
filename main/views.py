@@ -194,7 +194,7 @@ def delete_code( request, code_id ):
 def user_profile(request, name):
 	user = User.objects.filter(username=name)
 	codes = Code.objects.filter(user=user)
-	return render(request, 'main/user_profile.html', { 'codes': codes })
+	return render(request, 'main/user_profile.html', { 'codes': codes, 'user': user.get() })
 
 #TODO: To be implemented later
 @login_required
