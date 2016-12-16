@@ -191,7 +191,6 @@ def delete_code( request, code_id ):
 
 	return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
 
-@login_required
 def user_profile(request, name):
 	user = User.objects.filter(username=name)
 	codes = Code.objects.filter(user=user)
