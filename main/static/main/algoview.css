@@ -228,3 +228,17 @@ a.vote:hover{
 	font-size: 1.5rem;
 	line-height: 3.5rem;
 }
+
+textarea#description{
+	width: 100%;
+	background: transparent;
+	border: 0.2px solid #fff;
+	margin: 5px 0;
+	outline: none;
+	height: 5rem;
+	font-weight: 100;
+	font-size: 1.7rem;
+	font-family: Helvetica, Myriad Pro, Arial;
+	color: rgba(206, 206, 206, 0.9);
+	border: none;
+}

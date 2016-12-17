@@ -1,7 +1,7 @@
 {% extends "main/layout.html" %} {% block content %} {% include "main/navbar.html" %}
 <div class="container ">
     <h1 class="algotitle"> {{ algo.name }} </h1>
-    <p class="description text-muted" id="description" contenteditable="true">
+    <p class="description text-muted" id="description" onpaste="clearit(event)" contenteditable="true">
         {% if not algo.description %} <span id="deleteit"> Add Description </span> {% else %} {{ algo.description }} {% endif %}
     </p>
     <p class="lead algolang">
@@ -95,6 +95,10 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 <!-- TODO: second stage, change languages -->
 <script type="text/javascript">
 $('#selectlang').popover();
+
+function clearit(ev){
+    console.log(ev)
+}
 
 $('#description').focusout(function() {
     algo_id = $('#algo_id').val()

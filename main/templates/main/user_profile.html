@@ -15,17 +15,31 @@
 		</div>
 	</div>
 	
-	<div class="container">
-		<h2 style="color: #f4f4f4">{{ user.username }}'s Algorithms</h2>
+	<div class="container" style="margin-bottom: 10px;">
+		<h2 style="color: #f4f4f4">{{ user.username }}</h2>
 	</div>
 
-	{% for code in codes %}
-
-		<div class="resultbox" v-show="keepit">
-			<a class="stitle" href="/algo/{{code.algo.slug}}#code-{{code.id}}"> {{ code.algo.name }} </a>
-			<p class="meta"> {{ code.algo.description }}</p>
+	<div class="row">
+		<!-- <div class="col-sm-4 col-lg-3">
+			<img src="http://placehold.it/200X200" class="center-block thumbnail" alt="">
+			<p class="text-center" style="color: #fff"> 
+				<i class="glyphicon glyphicon-map-marker"></i>
+				 India
+			</p>
+			<p class="text-center" style="color: #fff"> 
+				@Google
+			</p>
+		</div> -->
+		<div class="col-sm-12 col-lg-12">
+			<!-- <img src="http://placehold.it/1000X300?text=Contributions" class="img-responsive img-thumbnail" alt=""> -->
+			{% for code in codes %}
+				<div class="resultbox" v-show="keepit">
+					<a class="stitle" href="/algo/{{code.algo.slug}}#code-{{code.id}}"> {{ code.algo.name }} </a>
+					<p class="meta"> {{ code.algo.description }}</p>
+				</div>
+			{% endfor %}
 		</div>
-	{% endfor %}
+	</div>
 
 </div>
 

@@ -14,27 +14,33 @@
     <div class="container-fluid" id="app">
         <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
-                <ul class="nav navbar-right">
-                    {% if request.user.is_authenticated %}
-                    <li class="dropdown nav-user">
-                        <button href="#" class="btn btn-default pull-right btn-md" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style=" border-radius: 2px; margin-top:20px; margin-right:30px; outline: 0"> Welcome back {{ request.user }}! <span class="caret"></span></button>
-                        <ul class="dropdown-menu" style="margin-right:30px;">
-                            <li>
-                                <a class="text-muted" href="../user/{{user.username}}">
-                                    Profile
-                                </a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{% url 'auth_logout' %}?next={{ request.get_full_path }}"> Logout </a></li>
-                        </ul>
+             {% if request.user.is_authenticated %}
+            <div class="dropdown pull-right">
+                <button class="btn btn-default" style="outline:none !important; margin-top:20px;" type="button" data-toggle="dropdown" 
+                        aria-haspopup="true" aria-expanded="false">
+                    Welcome back {{ request.user }}! 
+                    <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li>
+                        <a class="text-muted" href="../user/{{user.username}}"> 
+                            Profile
+                        </a>
                     </li>
-                    {% endif %} {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
-                    <a href='{% url "auth_login" %}?next={{ request.get_full_path }}' class="btn btn-default btn-md" style=" border-radius: 3px; margin-top:20px; margin-right:30px;">Login</a> {% endif %}
-                </ul>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{% url 'auth_logout' %}?next={{ request.get_full_path }}"> Logout </a></li>
+              </ul>
+            </div>
+            {% endif %}
+            {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+                <a href='{% url "auth_login" %}?next={{ request.get_full_path }}' class="btn btn-default btn-md pull-right" style="margin-top:20px;">Login</a> 
+            {% endif %}
             </div>
         </div>
         <div class="content">
-            <h1 class="title text-center"> algoBook <small style="font-size: 2rem; margin-left: -40px;">beta</small></h1>
+            <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+                <img class="center-block img-responsive" src="{% static 'images/logo.png' %}" alt="">
+            </div>
             <form id="form" action="./search" class="form" method="get">
                 <input type="text" v-model="query" class="form-control searchbox" placeholder="Search for Algorithms">
             </form>
