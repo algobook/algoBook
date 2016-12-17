@@ -369,12 +369,15 @@ label.form-invalid:after {
 }
 
 .nav-user {
-    line-height: 40px;
+
     color: #fff;
 }
 
 .nav-user a {
     color: #fff;
+}
+.nav-user > a {
+    text-align: right;
 }
 
 .nav-user>a:hover,

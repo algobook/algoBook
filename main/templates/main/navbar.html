@@ -1,4 +1,4 @@
- <header class="">
+ {% load static %}<header class="">
     <div class="container-fluid">
         {% block content %}
 
@@ -12,7 +12,7 @@
         </div>
 
         <div class="col-sm-2 col-xs-6">
-            <a href="../../" class="nohover"> <h2 class="title"> algoBook  </h2></a>
+            <a href="{% url 'index' %}" class="nohover"><img class="img-responsive" src="{% static 'images/logo.png' %}" alt=""></a>
         </div>
         <div class="col-sm-6 hidden-xs">
             <form class="form-query" action="./search" method="get">
