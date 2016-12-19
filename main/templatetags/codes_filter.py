@@ -14,4 +14,10 @@ def showDelete( context, code ):
 	else:
 		return 0
 
+@register.filter
+def noDefault( lang ):
+	if lang == "default":
+		return ""
+	return lang
+
 

@@ -155,6 +155,7 @@ header {
         border: 0.5px solid #fff;
         height: 50px;
     }
+
 }
 
 
@@ -369,7 +370,7 @@ label.form-invalid:after {
 }
 
 .nav-user {
-
+    line-height: 40px;
     color: #fff;
 }
 
@@ -392,7 +393,11 @@ label.form-invalid:after {
   outline: none;
 }
 
-
+@media( max-width: 748px){
+    .nav-user{
+        line-height: 0px;
+    }
+}
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     -webkit-transition: all 0.3s linear !important; 
 
@@ -411,4 +416,19 @@ label.form-invalid:after {
 
 ::placeholder{
     color: 
+}
+
+.userLink{
+    color: #777777;
+}
+.userLink:hover{
+    color: #777777;
+
+}
+::selection {
+  background-color: #1CB9AE;
+}
+
+#description{
+    border: none;
 }

@@ -21,10 +21,8 @@
 					<a class="stitle" href="/algo/{{algo.slug}}?lang={{request.GET.lang}}"> {{ algo.name }} </a>
 					<p class="meta"> {{ algo.description }}</p>
 					<p class="meta"> contributors:
-						{% for each, code in contributors.items %}
-							{% if each == algo.id %}
-								{{ code }}
-							{% endif %}
+						{% for contrib in algo.contribs %}
+							<a class="userLink" href="../../user/{{contrib}}"> {{contrib}} </a>
 						{% endfor %}
 					</p>
 
@@ -43,7 +41,14 @@
 					<div class="resultbox" v-for="algo in results.algos">
 						<a class="stitle" :href="urltoalgo(algo.slug)"> (( algo.name )) </a>
 						<p class="meta"> (( algo.description ))</p>
-						<p class="meta"> contributors: (( isThere(algo.contribs, "none") ))</p>
+						<p class="meta"> contributors: 
+							<span v-show="!isThere(algo.contribs)"> none </span>
+							<span v-show="isThere(algo.contribs)">
+								<span v-for="contrib in algo.contribs">
+									<a class="userLink" :href="'../../user/'+((contrib))">(( contrib ))</a>
+								</span>
+							</span>
+						</p>
 
 					</div>
 

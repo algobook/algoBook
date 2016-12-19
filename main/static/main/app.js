@@ -39,7 +39,7 @@ var app = new Vue({
 
 		isThere: function(val){
 			if(val == "")
-				return "none"
+				return 0
 			else
 				return val
 		},
@@ -96,6 +96,14 @@ var app = new Vue({
 		},
 		urltoalgo: function(uri){
 			return "../algo/" + uri + "?lang=" + this.getLang(this.query);
+		},
+		editDesc: function(ev){
+			// var desc = $('#description')
+			// if (ev.which == 13 )
+			// {
+				// ev.preventDefault()
+				// desc.html( desc.html() + '<br/>')
+			// }
 		}
 	}
 })

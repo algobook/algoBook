@@ -56,15 +56,21 @@ def search(request, query):
 	query = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query)
 	contributors = {}
+	data = []
 	for algo in algos:
 		users = list ( set( code.user.username for code in Code.objects.filter(algo=algo) ) )
-		users = ", ".join(users)
-		contributors[algo.id] = users
+		# contributors[algo.id] = users
+		data.append({
+				'id' : algo.id,
+				'name' : algo.name,
+				'description' : algo.description,
+				'slug': algo.slug,
+				'contribs' : users
+			})
 	return render(request, 'main/search.html', 
 				{ 
-					'algos' : algos,
-					'query': gen_search_query(request, query), 
-					'contributors': contributors
+					'algos' : data,
+					'query': gen_search_query(request, query)
 				}
 			)
 
@@ -79,7 +85,7 @@ def api_search(request,query):
 	data = {}
 	for algo in list(algos):
 		users = list ( set( code.user.username for code in Code.objects.filter(algo=algo)))
-		users = ", ".join(users)
+
 		data[algo.id] = {
 				'id' : algo.id,
 				'name' : algo.name,

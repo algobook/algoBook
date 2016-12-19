@@ -1,8 +1,8 @@
 {% extends "main/layout.html" %} {% block content %} {% include "main/navbar.html" %}
 <div class="container ">
     <h1 class="algotitle"> {{ algo.name }} </h1>
-    <p class="description text-muted" id="description" onpaste="clearit(event)" contenteditable="true">
-        {% if not algo.description %} <span id="deleteit"> Add Description </span> {% else %} {{ algo.description }} {% endif %}
+    <p class="description text-muted textarea" id="description" placeholder="Add Description">
+        {{ algo.description }}
     </p>
     <p class="lead algolang">
         in <span class="label label-danger"> {{ lang }}</span>
@@ -26,8 +26,8 @@
             <!-- <i class="glyphicon glyphicon-heart fav"></i> -->
         </div>
         <div class="col-sm-10 col-lg-11">
-            <pre>
-				<code> {{ code.code }}</code>
+            <pre class="{{ code.lang.name|noDefault }}">
+				<code>{{ code.code }}</code>
 			</pre>
         </div>
         <div class="col-sm-12">
@@ -91,7 +91,13 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endblock %} {% block headextended %} {% load static %}
-<link rel="stylesheet" href="{% static 'main/algoview.css' %}"> {% endblock %} {% block footerextended %}
+<link rel="stylesheet" href="{% static 'main/algoview.css' %}"> {% endblock %} 
+
+
+
+
+
+{% block footerextended %}
 <!-- TODO: second stage, change languages -->
 <script type="text/javascript">
 $('#selectlang').popover();
@@ -99,6 +105,10 @@ $('#selectlang').popover();
 function clearit(ev){
     console.log(ev)
 }
+
+$('#description').focusin( function(){
+    $('#deleteit').remove();
+})
 
 $('#description').focusout(function() {
     algo_id = $('#algo_id').val()
@@ -108,8 +118,16 @@ $('#description').focusout(function() {
     $.get("{% url 'add_desc' %}?algo_id=" + algo_id + "&desc=" + description)
 })
 
-$('#deleteit').click(function(){
-    $(this).html('')
-})
+</script>
+
+<script src="{% static 'main/textarea.js' %}"></script>
+<script>
+    $(".textarea").toTextarea({
+      allowHTML: false,//allow HTML formatting with CTRL+b, CTRL+i, etc.
+      allowImg: false,//allow drag and drop images
+      singleLine: false,//make a single line so it will only expand horizontally
+      pastePlainText: true,//paste text without styling as source
+      placeholder: true//a placeholder when no text is entered. This can also be set by a placeholder="..." or data-placeholder="..." attribute
+    });
 </script>
 {% endblock %}
