@@ -2,13 +2,27 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta charset="UTF-8">
+	
+	{% block description %}
+	<meta name="description" content="📖 The Curated book of Algorithms">
+	{% endblock %}
+	<meta name="keywords" content="algo, codes">
+	
+	{% block authors %}
+	{% endblock %}
+
 	{% load static %}
 	<link rel="manifest" href="{% static 'main/manifest.json' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'main/style.css' %}">
 	<!-- <link rel="stylesheet" href="{% static 'highlight/src/styles/atom-one-dark.css' %}"> -->
 	{% block headextended %} {% endblock %}
-	<title>algoBook : The Curated Book of Algorithms</title>
+	<title> 
+		{% block titletag %} algoBook : The Curated Book of Algorithms {% endblock %}
+	</title>
+
+	<meta n>
 </head>
 <body>
 
