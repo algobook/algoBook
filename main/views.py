@@ -8,7 +8,9 @@ import urllib
 from .models import  (
 	Algo,
 	Code,
-	Tags
+	Tags,
+	Votes,
+	User
 )
 
 from .forms import (
@@ -23,28 +25,78 @@ def index(request):
 def show(request, slug):
 
 	algo = Algo.objects.get(slug=slugify(slug))
-	codes = Code.objects.filter(algo=algo)
+	l = request.GET.get("lang", "default")
+
+	if l == "":
+		l = "default"
+	
+	lang = Tags.objects.filter( slug = slugify(l))
+	
+	if l != "default":
+		codes = Code.objects.filter(algo=algo, lang=lang)
+	else:
+		codes = Code.objects.filter(algo=algo)
+
 	# TODO: Add a check if algo is not created before
-	lang = request.GET.get("lang", "default")
 	data = {
 		'algo' 	: algo,
-		'lang' 	: lang,
-		'codes' : codes
+		'lang' 	: l,
+		'codes' : codes,
+		'query' : algo.name + " in " + l
 	}
 	return render(request, "main/algo/view.html", data)
 
+def gen_search_query(request,q):
+	if request.GET.get("lang"):
+		return q + " in " + request.GET.get("lang")
+	else:
+		return q;
+
 def search(request, query):
-	q = " ".join( list(query.split("+")))
+	query = " ".join( list(query.split("+")))
 	algos = Algo.objects.filter(name__icontains = query)
-	return render(request, 'main/search.html', {'algos' : algos, 'query': q})
+	contributors = {}
+	data = []
+	for algo in algos:
+		users = list ( set( code.user.username for code in Code.objects.filter(algo=algo) ) )
+		# contributors[algo.id] = users
+		data.append({
+				'id' : algo.id,
+				'name' : algo.name,
+				'description' : algo.description,
+				'slug': algo.slug,
+				'contribs' : users
+			})
+	return render(request, 'main/search.html', 
+				{ 
+					'algos' : data,
+					'query': gen_search_query(request, query)
+				}
+			)
 
 def api_search(request,query):
-	query = query.replace("+", " ")
-	algos = Algo.objects.filter(name__icontains = query).values("name", "slug", "description")
-	data = list(algos)
-	if not len(data):
+	query = " ".join( list(query.split("+")))
+	algos = Algo.objects.filter(name__icontains = query)
+
+	if not len(algos):
 		return HttpResponseNotFound("Not Found")
-	return JsonResponse({ 'results': data })
+
+	contributors = {}
+	data = {}
+	for algo in list(algos):
+		users = list ( set( code.user.username for code in Code.objects.filter(algo=algo)))
+
+		data[algo.id] = {
+				'id' : algo.id,
+				'name' : algo.name,
+				'description' : algo.description,
+				'slug': algo.slug,
+				'contribs' : users
+			}
+	
+	results = { 'algos' : data}
+
+	return JsonResponse({ 'results': results })
 
 	# TODO: tag system in second stage
 	# for tag in query.split("+"):
@@ -87,17 +139,16 @@ def create_algo(request):
 @login_required
 def add_code_to_algo(request):
 
-	print(request.POST.get("lang"))
 	user = request.user
 	algo = Algo.objects.get(pk=request.POST.get("algo_id"))
-	lang = Tags.objects.get(slug=slugify(request.POST.get("lang")));
+	lang,created = Tags.objects.get_or_create(slug=slugify(request.POST.get("lang")));
+	lang.name = request.POST.get("lang")
+	lang.save()
 
 	code = Code(
 			user=user,
 			algo=algo,
 			code=request.POST.get("code"),
-			upvotes=0,
-			downvotes=0,
 			lang=lang
 		)
 	code.save();
@@ -105,7 +156,6 @@ def add_code_to_algo(request):
 
 @login_required
 def add_description_to_algo(request):
-	print(request.GET)
 
 	algo_id = request.GET.get("algo_id")
 	desc = request.GET.get("desc")
@@ -115,6 +165,42 @@ def add_description_to_algo(request):
 	algo.save()
 
 	return JsonResponse({ 'response' : 1})
+
+@login_required
+def add_vote_to_code(request, code_id):
+
+	code = Code.objects.get(pk=code_id)
+	user = request.user
+	vote = request.GET.get("add")
+
+	check = Votes.objects.filter(user=user).filter(code=code)
+
+	if not check:
+		v = Votes(user=user, code=code, vote=vote)
+		v.save()
+	else:
+		check = check[0]
+		if int(check.vote) == int(vote):
+			check.delete()
+		else:
+			check.vote = vote
+			check.save()
+	return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
+
+@login_required
+def delete_code( request, code_id ):
+
+	code = Code.objects.get(pk=code_id)
+	
+	if code.user == request.user:
+		code.delete()
+
+	return HttpResponseRedirect( request.META.get('HTTP_REFERER') )
+
+def user_profile(request, name):
+	user = User.objects.filter(username=name)
+	codes = Code.objects.filter(user=user)
+	return render(request, 'main/user_profile.html', { 'codes': codes, 'user': user.get() })
 
 #TODO: To be implemented later
 @login_required

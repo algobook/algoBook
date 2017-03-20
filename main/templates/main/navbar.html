@@ -1,21 +1,22 @@
-<header class="">
+ {% load static %}<header class="">
     <div class="container-fluid">
         {% block content %}
 
         <div class="row">
         	<div class="visible-xs">
-	            <form id="form" action="./search" class="form" method="get">
-	                <input type="text" class="form-control searchbox searchbox-mobile" v-on:keyup="getData()" placeholder="Search..." v-model="query">
+                <span style="display: none" id="squery">{{query}}</span>
+	            <form class="form-query" action="./search" class="form" method="get">
+	                <input type="text" v-model="query" class="form-control searchbox searchbox-mobile" v-on:keyup="getData()" placeholder="Search..." v-model="query">
 	            </form>
         	</div>
         </div>
 
         <div class="col-sm-2 col-xs-6">
-            <a href="../../" class="nohover"> <h2 class="title"> algoBook  </h2></a>
+            <a href="{% url 'index' %}" class="nohover"><img class="img-responsive" src="{% static 'images/logo.png' %}" alt=""></a>
         </div>
         <div class="col-sm-6 hidden-xs">
-            <form id="form" action="./search" onsubmit="return something()" method="get">
-                <input type="text" class="form-control searchbox searchbox-small" v-on:keyup="getData()" v-model="query">
+            <form class="form-query" action="./search" method="get">
+                <input type="text" query="{{query}}" v-model="query" id="searchbox" class="form-control searchbox searchbox-small" v-on:keyup="getData()">
             </form>
         </div>
 
@@ -27,7 +28,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ request.user }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="text-muted"> <em> My Profile (coming soon) </em> </a>
+                            <a href="../user/{{user.username}}">My Profile</a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li><a href="{% url 'auth_logout' %}?next={{ request.get_full_path }}"> Logout </a></li>

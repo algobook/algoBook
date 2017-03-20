@@ -6,7 +6,7 @@ pre{
 	border-radius: 0;
 	text-align: left;
 	font-size: 1.5rem;
-	line-height: 1.5rem;
+	line-height: 1.7rem;
 	overflow: hidden;
 }
 
@@ -24,12 +24,8 @@ pre{
   padding: 1em;
   background: #2B2B2D;
   color: #CDD3D8;
-  font-family: "Source Code Pro", monospace;
+  font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif;
   font-size: 1em;
-}
-
-::selection {
-  background-color: #414244;
 }
 
 .hljs-comment {
@@ -209,4 +205,50 @@ pre{
 .algolang{
 	font-size: 1.5rem;
 	color: #fff;
+}
+
+a.vote{
+	color:rgb( 55, 55, 55);
+}
+
+a.disabled{
+	cursor: disabled;
+	color: rgb(73, 123, 166);
+}
+
+a.vote:hover{
+	color: rgb(73, 123, 166);
+}
+
+.controls {
+	font-size: 1.5rem;
+	line-height: 3.5rem;
+}
+
+textarea#description{
+	width: 100%;
+	background: transparent;
+	border: 0.2px solid #fff;
+	margin: 5px 0;
+	outline: none;
+	height: 5rem;
+	font-weight: 100;
+	font-size: 1.7rem;
+	font-family: Helvetica, Myriad Pro, Arial;
+	color: rgba(206, 206, 206, 0.9);
+	border: none;
+}
+
+#description{
+	font-size: 16px;
+	font-weight: 100;
+}
+
+#description:focus{
+	border: 0.3px solid #777;
+	padding: 3px 8px;
+	outline: none;
+	color: #fff;
+	font-weight: 100;
+
 }

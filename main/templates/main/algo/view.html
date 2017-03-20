@@ -1,114 +1,162 @@
 {% extends "main/layout.html" %}
 
+{% block titletag %}
+{{ algo.name }} - algoBook
+{% endblock %}
 
-{% block content %}
+{% block description %}
+    <meta name="description" content="{{ algo.description }} - algobook.net">
+{% endblock %}
 
-{% include "main/navbar.html" %}
+{% block authors %}
+    <meta name="authors" content="{% for code in codes %}{{ code.user.username }},{% endfor %}">
+{% endblock %}
 
+
+{% block content %} {% include "main/navbar.html" %}
 <div class="container ">
-	<h1 class="algotitle" > {{ algo.name }} </h1>
-	
-	<p class="description text-muted" id="description" contenteditable="true"> 
-		{% if not algo.description %}
-			Add Description 
-		{% else %}
-			{{ algo.description  }}
-		{% endif %}
-	</p>
-	<p class="lead algolang">
-		in <span class="label label-danger"> {{ lang }}</span>
-	</p>
-	{% for code in codes %}
-	<div class="row codebox">
-		<div class="col-sm-2 col-lg-1 col-xs-hidden meta">
-			<i class="glyphicon glyphicon-chevron-up"></i>
-			<p class="text-center score">0</p>
-			<i class="glyphicon glyphicon-chevron-down"></i>
-			<!-- #TODO: Add favourites in second stage -->
-			<!-- <i class="glyphicon glyphicon-heart fav"></i> -->
-		</div>
-		<div class="col-sm-10 col-lg-11">
-			<pre>
-				<code> {{ code.code }}</code>
+    <h1 class="algotitle"> {{ algo.name }} </h1>
+    <p class="description text-muted textarea" id="description" placeholder="Add Description">
+        {{ algo.description }}
+    </p>
+    <p class="lead algolang">
+        in <span class="label label-danger"> {{ lang }}</span>
+    </p>
+    {% load votes_filter %}
+    {% load codes_filter %}
+    {% for code in codes %}
+    <div class="row codebox" id="code-{{code.id}}">
+        <div class="col-sm-2 col-lg-1 col-xs-hidden meta">
+            <a  href="/algos/codes/{{ code.id }}/votes?add=1" class="vote" 
+                v-bind:class="{ 'disabled' : {% isUp code %} }">
+                    <i class="glyphicon glyphicon-chevron-up"></i>
+            </a>
+            
+            <p class="text-center score"> {{ code|count }}</p>
+            
+            <a href="/algos/codes/{{ code.id }}/votes?add=-1" class="vote" 
+                v-bind:class="{ 'disabled' : {% isDown code %} }">
+                <i class="glyphicon glyphicon-chevron-down"></i>
+            </a>            <!-- #TODO: Add favourites in second stage -->
+            <!-- <i class="glyphicon glyphicon-heart fav"></i> -->
+        </div>
+        <div class="col-sm-10 col-lg-11">
+            <pre class="{{ code.lang.name|noDefault }}">
+				<code>{{ code.code }}</code>
 			</pre>
-		</div>
-		<div class="col-sm-3 col-lg-2 col-sm-offset-9 col-lg-offset-10">
-			<div class="userbox">
-				<a href="/user/{{ code.user.username }}"> {{ code.user.username }}</a>
-			</div>
-		</div>
-	</div>
-	{% endfor %}
-
-	<div class="row ">
-		<div class="container codebox addans">
-			<form action="{% url 'add_code' %}" method="post">
-			{% csrf_token %}
-			<textarea class="form-control codeform" name="code" v-model="data" placeholder="Submit your code for this algorithm"></textarea>
-			<input type="text" name="lang" hidden value="{{ lang }}" id="lang">
-			<input type="text" id="algo_id" name="algo_id" hidden value="{{ algo.id }}" id="algoId">
-			<button class="btn btn-danger pull-right" style="margin-top:20px;">Post Your Algorithm</button>
-			</form>
-			<div class="container">
-				<pre>
+        </div>
+        <div class="col-sm-12">
+            <div class="col-sm-6 col-lg-4 col-sm-offset-3 col-lg-offset-6">
+                {% showDelete code as c%}
+                {% if c %}
+                    <div class="pull-right">
+                        <a href="codes/{{code.id}}/delete" class="controls"><i class="glyphicon glyphicon-trash"></i></a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-3 col-lg-2">
+                <div class="userbox">
+                    <a href="/user/{{ code.user.username }}"> {{ code.user.username }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row ">
+        <div class="container codebox addans">
+            <form action="{% url 'add_code' %}" method="post">
+                {% csrf_token %}
+                <textarea class="form-control codeform" name="code" v-model="data" placeholder="Submit your code for this algorithm"></textarea>
+                <input type="text" name="lang" hidden value="{{ lang }}" id="lang">
+                <input type="text" id="algo_id" name="algo_id" hidden value="{{ algo.id }}" id="algoId">
+                <button class="btn btn-danger pull-right" style="margin-top:20px;">Post Your Algorithm</button>
+            </form>
+            <div class="container">
+                <pre>
 					<code class="css">(( data ))</code>
 				</pre>
-			</div>
-
-		</div>
-
-	</div>
-	<!-- Disqus -->
-	<div class="row codebox">
-		<div class="container">
-			<div id="disqus_thread"></div>
-		</div>
-	</div>
-	<!-- ./Disqus -->
-
+            </div>
+        </div>
+    </div>
+    <!-- Disqus -->
+    <div class="row codebox">
+        <div class="container">
+            <div id="disqus_thread"></div>
+        </div>
+    </div>
+    <!-- ./Disqus -->
 </div>
-
-
-
 <script>
-
-	/**
-	*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-	*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-	/*
-	var disqus_config = function () {
-	this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-	this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-	};
-	*/
-	(function() { // DON'T EDIT BELOW THIS LINE
-	var d = document, s = d.createElement('script');
-	s.src = '//qanda-2.disqus.com/embed.js';
-	s.setAttribute('data-timestamp', +new Date());
-	(d.head || d.body).appendChild(s);
-	})();
-	</script>
-	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-{% endblock %}
+/**
+ *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document,
+        s = d.createElement('script');
+    s.src = '//qanda-2.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endblock %} {% block headextended %} {% load static %}
+<link rel="stylesheet" href="{% static 'main/algoview.css' %}"> {% endblock %} 
 
 
-{% block headextended %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'main/algoview.css' %}">
-{% endblock %}
+
+
 
 {% block footerextended %}
-	<!-- TODO: second stage, change languages -->
-	<script type="text/javascript">
-		$('#selectlang').popover();
+<!-- TODO: second stage, change languages -->
+<script type="text/javascript">
+$('#selectlang').popover();
 
-		$('#description').focusout(function(){
-			algo_id = $('#algo_id').val()
-			description = $('#description').html()
-			$.get("{% url 'add_desc' %}?algo_id=" + algo_id + "&desc=" + description)
-		})
-	</script>
+function clearit(ev){
+    console.log(ev)
+}
+
+$('#description').focusin( function(){
+    $('#deleteit').remove();
+})
+
+$('#description').focusout(function() {
+    algo_id = $('#algo_id').val()
+    if( $(this).html() == '')
+        return 0
+    description = $('#description').html()
+    $.get("{% url 'add_desc' %}?algo_id=" + algo_id + "&desc=" + description)
+})
+
+</script>
+
+<script src="{% static 'main/textarea.js' %}"></script>
+<script>
+    $(".textarea").toTextarea({
+      allowHTML: false,//allow HTML formatting with CTRL+b, CTRL+i, etc.
+      allowImg: false,//allow drag and drop images
+      singleLine: false,//make a single line so it will only expand horizontally
+      pastePlainText: true,//paste text without styling as source
+      placeholder: "Add Description"//a placeholder when no text is entered. This can also be set by a placeholder="..." or data-placeholder="..." attribute
+    });
+    $(document)
+        .one('focus.textarea', '.autoExpand', function(){
+            var savedValue = this.value;
+            this.value = '';
+            this.baseScrollHeight = this.scrollHeight;
+            this.value = savedValue;
+        })
+        .on('input.textarea', '.autoExpand', function(){
+            var minRows = this.getAttribute('data-min-rows')|0,
+                rows;
+            this.rows = minRows;
+            rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 16);
+            this.rows = minRows + rows;
+        });
+</script>
 {% endblock %}

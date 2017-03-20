@@ -1,0 +1,46 @@
+{% extends 'main/layout.html' %}
+
+
+{% block content %}
+{% include 'main/navbar.html' %}
+<div class="container" style="margin-top: 20px;">
+	<div class="alert alert-danger" id="warn">
+		<div class="container">
+		<div class="col-xs-10">
+			<strong>Heads up!</strong> We are currently in beta stage and preparing for your awesome profile at algoBook. Contribution graph will be our main focus
+			<a href="#" onclick="$('#warn').remove()" style="color:red">
+				<i class="glyphicon glyphicon-remove pull-right"></i>
+			</a>
+		</div>
+		</div>
+	</div>
+	
+	<div class="container" style="margin-bottom: 10px;">
+		<h2 style="color: #f4f4f4">{{ user.username }}</h2>
+	</div>
+
+	<div class="row">
+		<!-- <div class="col-sm-4 col-lg-3">
+			<img src="http://placehold.it/200X200" class="center-block thumbnail" alt="">
+			<p class="text-center" style="color: #fff"> 
+				<i class="glyphicon glyphicon-map-marker"></i>
+				 India
+			</p>
+			<p class="text-center" style="color: #fff"> 
+				@Google
+			</p>
+		</div> -->
+		<div class="col-sm-12 col-lg-12">
+			<!-- <img src="http://placehold.it/1000X300?text=Contributions" class="img-responsive img-thumbnail" alt=""> -->
+			{% for code in codes %}
+				<div class="resultbox" v-show="keepit">
+					<a class="stitle" href="/algo/{{code.algo.slug}}#code-{{code.id}}"> {{ code.algo.name }} </a>
+					<p class="meta"> {{ code.algo.description }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}
