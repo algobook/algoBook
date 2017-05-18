@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'registration',
     'crispy_forms',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps'
 ]
 
 MIDDLEWARE_CLASSES = [

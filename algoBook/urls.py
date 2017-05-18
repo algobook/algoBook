@@ -15,8 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+from main.algoSitemap import AlgoSitemap
 
 urlpatterns = [
+    url(r'^sitemap\.xml$', sitemap,
+        {'sitemaps': {'algos': AlgoSitemap}},
+        name='django.contrib.sitemaps.views.sitemap'),
+
     url(r'^admin/', admin.site.urls),
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^', include('main.urls')),
