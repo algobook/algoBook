@@ -14,7 +14,7 @@ algoBook is focused to curated list of algorithms, solutions and their explanati
 
 Make sure you have the dependencies mentioned above installed before proceeding further.
 
-* **Step 0** - Clone the Open Event Orga Server repository (from the development branch) and ```cd ``` into the directory.
+* **Step 0** - Clone the algoBook/algoBook repository (from the development branch) and ```cd ``` into the directory.
 ```sh
 git clone -b development https://github.com/algobook/algobook.git
 cd algobook
