@@ -58,3 +58,5 @@ bower install
 ```
 # run app
 python manage.py runserver
+
+[Mozilla Community Participation Guidelines](https://www.mozilla.org/en-US/about/governance/policies/participation/) 
