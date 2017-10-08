@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from . import regbackend
 from . import views
-from algoSitemap import CodeSitemap
+from main.algoSitemap import CodeSitemap
 
 urlpatterns = [
     url(r'^$', views.index, name = 'index'),
@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^codes/sitemap\.xml$', sitemap,
         {'sitemaps': {'algos': CodeSitemap}},
         name='django.contrib.sitemaps.views.sitemap'),
+
     url(r'codes/(?P<code_id>[\w+-]+)/delete', views.delete_code),
 
     url(r'user/(?P<name>[\w+-]+)/$', views.user_profile),
